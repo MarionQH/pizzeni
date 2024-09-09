@@ -1,4 +1,4 @@
-package com.example.pizzeni;
+package fr.eni.pizzeni;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
