@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="eni-page-background"
+      lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="icon" href="/img/popcorn.jpg">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="/vendor/uikit/js/uikit.min.js"></script>
+    <script src="/vendor/uikit/js/uikit-icons.min.js"></script>
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+    <!-- My theme -->
+    <link rel="stylesheet" href="/css/pizzeni-style.css"/>
+
+
+
+    <!-- CSS suplémentaire  -->
+    <div layout:fragment="css-file"></div>
+
+
+    <meta charset="UTF-8">
+    <title> Accueil </title>
+</head>
+
+<body >
+
+
+
+<!-- Flash message conditionnel -->
+<!-- Affiche un message temporaire si il existe -->
+<!--<div th:if="${flashMessage}" class="uk-padding-small">-->
+<!--    <div th:classappend ="${flashMessage.getTypeCssClass()}" uk-alert class="eni-flash-message">-->
+<!--        <a href class="uk-alert-close" uk-close></a>-->
+<!--        <p th:text="${flashMessage.message}"></p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<nav class="eni-navbar" uk-navbar>-->
+<!--    <div class="uk-navbar-left">-->
+<!--        <ul class="uk-navbar-nav">-->
+
+<!--            <li sec:authorize="hasRole('ROLE_MEMBRE')" class="uk-active"><a th:href="@{/accueil}">Accueil</a></li>-->
+<!--            <li sec:authorize="hasRole('ROLE_MEMBRE')" class="uk-parent"><a th:href="@{/movies}">Films</a></li>-->
+<!--            <li sec:authorize="hasRole('ROLE_ADMIN')" class="uk-parent"><a th:href="@{/addfilm}">Créer un film</a></li>-->
+
+<!--        </ul>-->
+
+<!--        <a sec:authorize="!isAuthenticated" title="Se connecter"  class="uk-icon-button" href="/login">-->
+<!--            <i class="fas fa-sign-in-alt"></i></a>-->
+<!--        <a sec:authorize="isAuthenticated" title="Se déconnecter"  class="uk-icon-button" href="/logout">-->
+<!--            <i class="fas fa-door-open"></i></a>-->
+
+<!--    </div>-->
+<!--</nav>-->
+<!--<br>-->
+<!--Va être remplacé dans les pages qu'il lé'hérite-->
+<div layout:fragment="content">
+</div>
+
+
+</body>
+</html>
