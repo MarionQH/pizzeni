@@ -7,5 +7,5 @@ import java.util.List;
 public interface ITypeProduitManager {
 
     List<TypeProduit> getTypesProduits();
-    TypeProduit getTypeProduitByIt(Long id);
+    TypeProduit getTypeProduitById(Long id);
 }

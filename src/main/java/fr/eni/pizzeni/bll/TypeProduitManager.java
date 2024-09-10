@@ -23,7 +23,7 @@ public class TypeProduitManager implements ITypeProduitManager{
     }
 
     @Override
-    public TypeProduit getTypeProduitByIt(Long id) {
+    public TypeProduit getTypeProduitById(Long id) {
         return daoTypeProduit.findById(id);
     }
 }
