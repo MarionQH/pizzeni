@@ -10,8 +10,8 @@ public class Produit {
     private TypeProduit typeProduit;
 
     public Produit() {
-    }
 
+    };
 
 
     public Produit(Long id, String nom, String description, Long prix, String imageUrl, TypeProduit typeProduit) {

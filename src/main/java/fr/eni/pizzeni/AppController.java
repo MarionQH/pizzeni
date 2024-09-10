@@ -39,12 +39,11 @@ public class AppController {
     }
 
 
-    @GetMapping("/ajout-pizza")
-    public String getAjoutPizza(Model model) {
+    @GetMapping("ajout-pizza")
+    public String getAjoutPizza(Long id, Model model) {
 
         Produit produit = new Produit();
         List<TypeProduit> typesProduits= typeProduitManager.getTypesProduits();
-
 
         model.addAttribute("typesProduits", typesProduits);
         model.addAttribute("produit", produit);
@@ -52,7 +51,7 @@ public class AppController {
         return "ajout-pizza.html";
     }
 
-    @PostMapping("/ajout-pizza")
+    @PostMapping("ajout-pizza")
     public String postAjoutPizza(Produit produit) {
 
         produitManager.saveProduit(produit);
