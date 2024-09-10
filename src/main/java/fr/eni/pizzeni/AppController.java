@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AppController {
 
+    @GetMapping("")
+    public String getBase() {
+        return "base.html";
+    }
+
+
     @GetMapping("accueil")
     public String index() {
         return "accueil.html";
