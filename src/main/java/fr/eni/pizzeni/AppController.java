@@ -40,7 +40,7 @@ public class AppController {
 
 
     @GetMapping("ajout-pizza")
-    public String getAjoutPizza(Model model) {
+    public String getAjoutPizza(Long id, Model model) {
 
         Produit produit = new Produit();
         List<TypeProduit> typesProduits= typeProduitManager.getTypesProduits();

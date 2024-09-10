@@ -11,11 +11,11 @@
 
   <form th:object="${produit}" method="post" th:action="@{/ajout-pizza}" >
 
-    <input th:field="*{produit.id}" type="hidden">
+    <input th:field="*{id}" type="hidden">
 
     <div class=" uk-margin">
       <label for="nom">Titre:</label>
-      <input th:field="*{produit.nom}" class="uk-input"/>
+      <input th:field="*{nom}" class="uk-input"/>
 <!--      <ul th:if="${#fields.hasErrors('nom')}">-->
 <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('nom')}" th:text="${error}">-->
 <!--        </li>-->
@@ -24,7 +24,7 @@
 
     <div class=" uk-margin">
       <label for="description"> descritpion:</label>
-      <input th:field="*{produit.description}" class="uk-input"/>
+      <input th:field="*{description}" class="uk-input"/>
 <!--      <ul th:if="${#fields.hasErrors('description')}">-->
 <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('year')}" th:text="${error}">-->
 <!--        </li>-->
@@ -33,7 +33,7 @@
 
     <div class=" uk-margin">
       <label for="prix"> Prix:</label>
-      <input th:field="*{produit.prix}" type="number" class="uk-input" label="prix"/>
+      <input th:field="*{prix}" type="number" class="uk-input" label="prix"/>
 <!--      <ul th:if="${#fields.hasErrors('prix')}">-->
 <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('prix')}" th:text="${error}">-->
 <!--        </li>-->
@@ -42,7 +42,7 @@
 
     <div class=" uk-margin">
       <label for="imageUrl"> Url image:</label>
-      <input th:field="*{produit.imageUrl}" class="uk-input"/>
+      <input th:field="*{imageUrl}" class="uk-input"/>
 <!--      <ul th:if="${#fields.hasErrors('url')}">-->
 <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('image_url')}" th:text="${error}">-->
 <!--      </ul>-->

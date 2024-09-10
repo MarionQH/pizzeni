@@ -3,7 +3,10 @@ package fr.eni.pizzeni.ihm;
 import fr.eni.pizzeni.bll.ITypeProduitManager;
 import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class StringToTypeProduitConverter implements Converter<String, TypeProduit> {
 
     private ITypeProduitManager typeProduitManager;
