@@ -12,6 +12,8 @@ public class Produit {
     public Produit() {
     }
 
+    
+
     public Produit(Long id, String nom, String description, Long prix, String imageUrl, TypeProduit typeProduit) {
         this.id = id;
         this.nom = nom;
