@@ -25,13 +25,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// Driver de MySQL (connexion de java à la bdd)
+
+//JDBC
+implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+
+	// Driver de MySQL
 	runtimeOnly 'mysql:mysql-connector-java:8.0.33'
 
-	//JDBC java database connectivity (pour faire des requêtes avec java)
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
