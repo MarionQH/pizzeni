@@ -34,13 +34,13 @@
             <li  class="uk-parent"><a th:href="@{/carte}">Notre Carte</a></li>
             <li  class="uk-parent"><a th:href="@{/ajout-pizza}">Modifier la carte</a></li>
             <li  class="uk-parent"><a th:href="@{/creation-commande}">Commander</a></li>
-            <li  class="uk-parent"><a th:href="@{/liste-commande}">Commandes</a></li>
+            <li  class="uk-parent"><a th:href="@{/liste-commandes}">Commandes</a></li>
 
         </ul>
 
-        <a sec:authorize="!isAuthenticated" title="Se connecter"  class="uk-icon-button" href="/login">
+        <a sec:authorize="!isAuthenticated" title="Se connecter"  class="uk-icon-button" th:href="@{/login}">
             <i class="fas fa-sign-in-alt"></i></a>
-        <a sec:authorize="isAuthenticated" title="Se déconnecter"  class="uk-icon-button" href="/logout">
+        <a sec:authorize="isAuthenticated" title="Se déconnecter"  class="uk-icon-button" th:href="@{/logout}">
             <i class="fas fa-door-open"></i></a>
 
     </div>

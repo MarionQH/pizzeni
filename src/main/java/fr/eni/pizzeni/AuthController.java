@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AuthController {
 
-
     @GetMapping("login")
         public String getLogin() {
         return "connexion.html";
