@@ -1,17 +1,26 @@
 package fr.eni.pizzeni;
 
 
+import fr.eni.pizzeni.bll.ProduitManager;
+import fr.eni.pizzeni.bo.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.lang.reflect.Member;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class AppController {
+    private final ProduitManager produitManager;
+
+    public AppController(ProduitManager produitManager) {
+        this.produitManager = produitManager;
+    }
 
 // test connexion bdd
 //    @Autowired
@@ -72,7 +81,15 @@ public class AppController {
     }
 
     @GetMapping("carte")
-    public String getCarte() {
+    public String getCarte(Model model) {
+
+        // récupérer la liste
+        List<Produit> produits = produitManager.getProduits();
+
+        // envoyer les films dans le modele
+        model.addAttribute("produits", produits);
+
+
         return "carte.html";
     }
 

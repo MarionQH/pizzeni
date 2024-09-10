@@ -3,8 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/base}">
 
+<body>
+
+<!-- Surcharger le title -->
+<title layout:fragment="title">Carte</title>
+
 <div layout:fragment="content">
+    <div class="uk-container">
+        <h1 class="uk-heading-xlarge eni-heading uk-flex uk-flex-center uk-flex-middle uk-align-center">Nos pizzas</h1>
+
+        <div th:each="produit : ${produits}" class="uk-padding-small">
+            <div class="eni-movie-card">
+                <div class="eni-movie-card-layer-2">
+                    <h2 th:text="${produit.nom}"></h2>
+                    <div>
+                    </div>
+                    <p th:text="${produit.prix} + '€'" class="eni-desc"></p>
+                    <p th:text="${produit.description}" class="eni-desc"></p>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 
 
 
 </div>
+
+</body>
+
+</html>
