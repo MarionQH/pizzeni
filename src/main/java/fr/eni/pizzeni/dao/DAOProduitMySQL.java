@@ -64,32 +64,18 @@ public class DAOProduitMySQL implements IDAOProduit {
 
     @Override
     public void saveProduit(Produit produit) {
-//
-//        // 1. Insérer le film dans la table childrenmovie
-//        String sql = "INSERT INTO childrenmovie (title,year,duration,synopsis,url,id_genre) VALUES (:titleMovie,:yearMovie,:durationMovie,:synopsisMovie,:urlMovie,:genreMovie)";
-//        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-//        mapSqlParameterSource.addValue("titleMovie", movie.title);
-//        mapSqlParameterSource.addValue("yearMovie", movie.year);
-//        mapSqlParameterSource.addValue("durationMovie", movie.duration);
-//        mapSqlParameterSource.addValue("synopsisMovie", movie.synopsis);
-//        mapSqlParameterSource.addValue("urlMovie", movie.url);
-//        mapSqlParameterSource.addValue("genreMovie", movie.getGenre().getId());
-//
-//        // Exécuter la requête pour insérer le film
-//        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
-//
-//        // 2. Récupérer l'id du film récemment inséré (si auto-incrémenté par la base de données)
-//        Long childrenMovieId = namedParameterJdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", new MapSqlParameterSource(), Long.class);
-//
-//        // 3. Insérer la liste des participants (acteurs) dans la table acteurs
-//        String sqlActeur = "INSERT INTO acteurs (id_film, id_participant) VALUES (:idMovie, :idParticipant)";
-//        for (Participant participant : movie.getParticipants()) {
-//            MapSqlParameterSource mapParticipantSource = new MapSqlParameterSource();
-//            mapParticipantSource.addValue("idMovie",childrenMovieId);
-//            mapParticipantSource.addValue("idParticipant", participant.getId()); // Utiliser l'ID du participant
-//
-//            namedParameterJdbcTemplate.update(sqlActeur, mapParticipantSource);
-//        }
+
+        // 1. Insérer le produit dans la table produit
+        String sql = "INSERT INTO produit (nom,description,prix,image_url, TYPE_PRODUIT_id_type_produit) VALUES (:nomProduit,:desciptionProduit,:prixProduit,:urlProduit,:typeProduit)";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("nomProduit", produit.getNom());
+        mapSqlParameterSource.addValue("desciptionProduit", produit.getDescription());
+        mapSqlParameterSource.addValue("prixProduit", produit.getPrix());
+        mapSqlParameterSource.addValue("urlProduit", produit.getImageUrl());
+        mapSqlParameterSource.addValue("typeProduit", produit.getTypeProduit().getId());
+
+        // Exécuter la requête pour insérer le produit
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 
     }
 }

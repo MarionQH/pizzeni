@@ -21,30 +21,7 @@ public class AppController {
     public AppController(ProduitManager produitManager) {
         this.produitManager = produitManager;
     }
-
-// test connexion bdd
-//    @Autowired
-//    JdbcTemplate jdbcTemplate;
-//
-//    static final RowMapper<Member> MEMBER_ROW_MAPPER = new RowMapper<Member>() {
-//
-//        @Override
-//        public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-//            Member user = new Member();
-//
-//            user.setFirstName(rs.getString("prenom"));
-//            user.setLastName(rs.getString("nom"));
-//            user.setEmail(rs.getString("email"));
-//            user.setId(rs.getLong("id"));
-//
-//
-//
-//            return user;
-//        }
-//
-//    };
-
-
+    
 
 
     @GetMapping("")
