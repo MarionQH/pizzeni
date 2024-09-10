@@ -3,7 +3,6 @@ package fr.eni.pizzeni;
 
 import fr.eni.pizzeni.bll.ITypeProduitManager;
 import fr.eni.pizzeni.bll.ProduitManager;
-import fr.eni.pizzeni.bll.TypeProduitManager;
 import fr.eni.pizzeni.bo.Produit;
 import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.lang.reflect.Member;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
