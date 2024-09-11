@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -28,7 +28,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
         public Commande mapRow(ResultSet rs, int rowNum) throws SQLException {
             Commande commande = new Commande();
             commande.setId(rs.getLong("id_commande"));
-            commande.setDateHeureLivraison(rs.getObject("date_heure_livraison", LocalDate.class));
+            commande.setDateHeureLivraison(rs.getObject("date_heure_livraison", LocalDateTime.class));
             commande.setLivraison(rs.getBoolean("livraison"));
             commande.setPrixTotal(rs.getLong("prix_total"));
             commande.setEstPaye(rs.getBoolean("est_paye"));

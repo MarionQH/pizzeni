@@ -1,8 +1,10 @@
 package fr.eni.pizzeni;
 
 
+import fr.eni.pizzeni.bll.ICommandeManager;
 import fr.eni.pizzeni.bll.ITypeProduitManager;
 import fr.eni.pizzeni.bll.ProduitManager;
+import fr.eni.pizzeni.bo.Commande;
 import fr.eni.pizzeni.bo.Produit;
 import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AppController {
 
     @Autowired
     ITypeProduitManager typeProduitManager;
+
+    @Autowired
+    ICommandeManager commandeManager;
 
     @GetMapping("")
     public String getBase() {
@@ -66,12 +71,21 @@ System.out.println(produit);
 
 
     @GetMapping("creation-commande")
-    public String getCreationCommande() {
+    public String getCreationCommande(Long id, Model model) {
+
+        Commande commande =new Commande();
+
+        model.addAttribute("commande", commande);
+
+
         return "creation-commande.html";
     }
 
     @PostMapping("creation-commande")
-    public String postCreationCommande() {
+    public String postCreationCommande(Commande commande) {
+
+        commandeManager.saveCommande(commande);
+
         return  "redirect:/creation-commande";
     }
 

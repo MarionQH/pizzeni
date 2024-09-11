@@ -1,12 +1,12 @@
 package fr.eni.pizzeni.bo;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 public class Commande {
 
     private Long id;
-    private LocalDate dateHeureLivraison;
+    private LocalDateTime dateHeureLivraison;
     private boolean livraison;
     private Long prixTotal;
     private boolean estPaye;
@@ -19,7 +19,7 @@ public class Commande {
     public Commande() {
     }
 
-    public Commande(Long id, boolean estPaye, Long prixTotal, boolean livraison, LocalDate dateHeureLivraison, Long idEtat) {
+    public Commande(Long id, boolean estPaye, Long prixTotal, boolean livraison, LocalDateTime dateHeureLivraison, Long idEtat) {
         this.id = id;
         this.estPaye = estPaye;
         this.prixTotal = prixTotal;
@@ -41,11 +41,11 @@ public class Commande {
         this.id = id;
     }
 
-    public LocalDate getDateHeureLivraison() {
+    public LocalDateTime getDateHeureLivraison() {
         return dateHeureLivraison;
     }
 
-    public void setDateHeureLivraison(LocalDate dateHeureLivraison) {
+    public void setDateHeureLivraison(LocalDateTime dateHeureLivraison) {
         this.dateHeureLivraison = dateHeureLivraison;
     }
 
