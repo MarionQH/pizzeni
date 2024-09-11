@@ -18,7 +18,7 @@
             <select th:field="*{client}" class="uk-width-1-1">
                 <!--                * étoile fait réference à un objet présent dans la page  ce qui est présent dans le th:objet-->
 
-                <option th:each="client: ${clients}" th:value="${client.id}" th:text="${client.nom}"></option>
+                <option th:each="client: ${clients}" th:value="${client.id}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
                 <!--                le $ faut référence au donnée du modèle-->
             </select>
         </div>

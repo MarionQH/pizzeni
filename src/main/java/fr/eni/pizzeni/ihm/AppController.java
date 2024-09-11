@@ -1,9 +1,11 @@
 package fr.eni.pizzeni.ihm;
 
 
+import fr.eni.pizzeni.bll.IClientManager;
 import fr.eni.pizzeni.bll.ICommandeManager;
 import fr.eni.pizzeni.bll.ITypeProduitManager;
 import fr.eni.pizzeni.bll.ProduitManager;
+import fr.eni.pizzeni.bo.Client;
 import fr.eni.pizzeni.bo.Commande;
 import fr.eni.pizzeni.bo.Produit;
 import fr.eni.pizzeni.bo.TypeProduit;
@@ -33,6 +35,9 @@ public class AppController {
 
     @Autowired
     ICommandeManager commandeManager;
+
+    @Autowired
+    IClientManager clientManager;
 
 
     @GetMapping("")
@@ -78,8 +83,10 @@ public class AppController {
     public String getCreationCommande(Long id, Model model) {
 
         Commande commande = new Commande();
+        List<Client> clients = clientManager.getClients();
 
         model.addAttribute("commande", commande);
+        model.addAttribute("clients", clients);
 
 
         return "creation-commande.html";
