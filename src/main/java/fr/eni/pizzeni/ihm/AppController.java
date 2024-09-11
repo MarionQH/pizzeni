@@ -1,4 +1,4 @@
-package fr.eni.pizzeni;
+package fr.eni.pizzeni.ihm;
 
 
 import fr.eni.pizzeni.bll.ICommandeManager;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -51,6 +50,7 @@ public class AppController {
         Produit produit = new Produit();
         List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
         System.out.println(produit);
+
 
 
         System.out.println(typesProduits);
@@ -118,7 +118,7 @@ public class AppController {
 
     @GetMapping("ajout-panier")
     public String getAjoutPanier() {
-
+// expliquer le but de la méthode
         //todo: code pour ajouter produit au panier
         //todo: flash message "produit ajouté"
 
@@ -129,7 +129,7 @@ public class AppController {
     @GetMapping("supprimer-produit/**")
     public String getSupprimerProduit(Long id) {
 
-        //todo: appel requete sql suppression produit
+        //done appel requete sql suppression produit
         //todo: flash message ou modale "Etes vous sûr.e?"
         produitManager.deleteProduitById(id);
 

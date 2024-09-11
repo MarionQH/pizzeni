@@ -1,4 +1,4 @@
-package fr.eni.pizzeni;
+package fr.eni.pizzeni.ihm;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

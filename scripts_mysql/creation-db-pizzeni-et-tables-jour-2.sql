@@ -1,0 +1,191 @@
+use db_pizzeni;
+CREATE TABLE CLIENT 
+    (
+     id_client INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+     prenom NVARCHAR (50) NOT NULL , 
+     nom NVARCHAR (50) NOT NULL , 
+     rue NVARCHAR (50) , 
+     code_postal NVARCHAR (10) , 
+     ville NVARCHAR (50) 
+    );
+
+
+CREATE TABLE COMMANDE 
+    (
+     id_commande INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+     date_heure_livraison DATETIME NOT NULL , 
+     CLIENT_id_client INTEGER NOT NULL , 
+     livraison BIT NOT NULL , 
+     ETAT_id_etat INTEGER NOT NULL ,
+	 UTILISATEUR_id_utilisateur INTEGER,
+	 prix_total decimal(10,2) NOT NULL , 
+     est_paye BIT NOT NULL 
+    );
+
+
+
+
+CREATE TABLE DETAIL_COMMANDE 
+    (
+     quantite INTEGER NOT NULL , 
+     COMMANDE_id_commande INTEGER NOT NULL , 
+     PRODUIT_id_produit INTEGER NOT NULL 
+    );
+
+ALTER TABLE DETAIL_COMMANDE ADD CONSTRAINT DETAIL_COMMANDE_PK PRIMARY KEY (COMMANDE_id_commande, PRODUIT_id_produit);
+
+CREATE TABLE ETAT 
+    (
+     id_etat INTEGER NOT NULL , 
+     libelle NVARCHAR (50) NOT NULL 
+    );
+
+ALTER TABLE ETAT ADD CONSTRAINT ETAT_PK PRIMARY KEY (id_etat);
+
+CREATE TABLE PRODUIT 
+    (
+     id_produit INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+     nom NVARCHAR (50) NOT NULL , 
+     description NVARCHAR (200) NOT NULL , 
+     prix decimal(10,2) NOT NULL , 
+     image_url VARCHAR (800) , 
+     TYPE_PRODUIT_id_type_produit INTEGER NOT NULL 
+    );
+
+
+CREATE TABLE ROLE 
+    (
+     id_role INTEGER NOT NULL , 
+     libelle NVARCHAR (50) NOT NULL 
+    );
+
+
+ALTER TABLE ROLE ADD CONSTRAINT ROLE_PK PRIMARY KEY (id_role);
+
+
+
+CREATE TABLE TYPE_PRODUIT 
+    (
+     id_type_produit INTEGER NOT NULL , 
+     libelle NVARCHAR (50) NOT NULL 
+    );
+
+ALTER TABLE TYPE_PRODUIT ADD CONSTRAINT TYPE_PRODUIT_PK PRIMARY KEY  (id_type_produit);
+
+CREATE TABLE UTILISATEUR 
+    (
+     id_utilisateur INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+     nom NVARCHAR (50) , 
+     prenom NVARCHAR (50) NOT NULL , 
+     email VARCHAR (50) NOT NULL , 
+     mot_de_passe NVARCHAR (50) NOT NULL 
+	 );
+
+
+
+CREATE TABLE ROLE_UTILISATEUR 
+    (
+     UTILISATEUR_id_utilisateur INTEGER NOT NULL , 
+     ROLE_id_role INTEGER NOT NULL 
+    )
+;
+ALTER TABLE ROLE_UTILISATEUR ADD CONSTRAINT ROLE_UTILISATEUR_PK PRIMARY KEY  (UTILISATEUR_id_utilisateur, ROLE_id_role);
+
+ALTER TABLE ROLE_UTILISATEUR 
+    ADD CONSTRAINT ROLE_UTILISATEUR_ROLE_FK FOREIGN KEY 
+    ( 
+     ROLE_id_role
+    ) 
+    REFERENCES ROLE 
+    ( 
+     id_role 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE ROLE_UTILISATEUR 
+    ADD CONSTRAINT ROLE_UTILISATEUR_UTILISATEUR_FK FOREIGN KEY 
+    ( 
+     UTILISATEUR_id_utilisateur
+    ) 
+    REFERENCES UTILISATEUR 
+    ( 
+     id_utilisateur 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE COMMANDE 
+    ADD CONSTRAINT COMMANDE_CLIENT_FK FOREIGN KEY 
+    ( 
+     CLIENT_id_client
+    ) 
+    REFERENCES CLIENT 
+    ( 
+     id_client 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE COMMANDE 
+    ADD CONSTRAINT COMMANDE_ETAT_FK FOREIGN KEY 
+    ( 
+     ETAT_id_etat
+    ) 
+    REFERENCES ETAT 
+    ( 
+     id_etat 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE COMMANDE 
+    ADD CONSTRAINT COMMANDE_UTILISATEUR_FK FOREIGN KEY 
+    ( 
+     UTILISATEUR_id_utilisateur
+    ) 
+    REFERENCES UTILISATEUR 
+    ( 
+     id_utilisateur 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE DETAIL_COMMANDE 
+    ADD CONSTRAINT DETAIL_COMMANDE_COMMANDE_FK FOREIGN KEY 
+    ( 
+     COMMANDE_id_commande
+    ) 
+    REFERENCES COMMANDE 
+    ( 
+     id_commande 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE DETAIL_COMMANDE 
+    ADD CONSTRAINT DETAIL_COMMANDE_PRODUIT_FK FOREIGN KEY 
+    ( 
+     PRODUIT_id_produit
+    ) 
+    REFERENCES PRODUIT 
+    ( 
+     id_produit 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+ALTER TABLE PRODUIT 
+    ADD CONSTRAINT PRODUIT_TYPE_PRODUIT_FK FOREIGN KEY 
+    ( 
+     TYPE_PRODUIT_id_type_produit
+    ) 
+    REFERENCES TYPE_PRODUIT 
+    ( 
+     id_type_produit 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION ;
+
+
+
