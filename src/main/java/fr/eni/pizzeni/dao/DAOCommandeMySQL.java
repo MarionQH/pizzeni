@@ -64,5 +64,17 @@ public class DAOCommandeMySQL implements IDAOCommande {
     @Override
     public void saveCommande(Commande commande) {
 
+        // 1. Insérer le produit dans la table produit
+        String sql = "INSERT INTO commande (date_heure_livraison, livraison, ETAT_id_etat, prix_total,est_paye ) VALUES (:dateHeureLivraison,:livraison,:idEtat,:prixTot,:paye)";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("dateHeureLivraison", commande.getDateHeureLivraison());
+        mapSqlParameterSource.addValue("livraison", commande.isLivraison());
+        mapSqlParameterSource.addValue("idEtat", commande.getIdEtat());
+        mapSqlParameterSource.addValue("prixTot", commande.getPrixTotal());
+        mapSqlParameterSource.addValue("paye", commande.isEstPaye());
+
+        // Exécuter la requête pour insérer le produit
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+
     }
 }
