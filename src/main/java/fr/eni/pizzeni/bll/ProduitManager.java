@@ -33,4 +33,10 @@ public class ProduitManager implements IProduitManager {
         daoProduit.saveProduit(produit);
 
     }
+
+    @Override
+    public void deleteProduitById(Long id) {
+        daoProduit.deleteProduitById(id);
+
+    }
 }

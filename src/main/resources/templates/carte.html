@@ -71,7 +71,11 @@
                         <a href="/" class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
                     </div>
                     <div class=" uk-margin">
-                        <a href="/" class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+
+<!--                        @chloe essai du flow de suppression de produit-->
+                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+
+<!--                        <a href="/" class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>-->
                     </div>
                 </div>
             </div>

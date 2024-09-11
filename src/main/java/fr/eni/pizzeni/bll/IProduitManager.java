@@ -12,5 +12,6 @@ public interface IProduitManager {
     public List<Produit> getProduits();
     public Produit getProduitById(Long id);
     public void saveProduit(Produit produit);
+    public void deleteProduitById(Long id);
 
 }

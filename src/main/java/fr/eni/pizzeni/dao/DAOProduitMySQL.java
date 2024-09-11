@@ -80,4 +80,12 @@ public class DAOProduitMySQL implements IDAOProduit {
         namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 
     }
+
+    @Override
+    public void deleteProduitById(Long id) {
+        String sql = "DELETE FROM produit WHERE id_produit=?";
+        jdbcTemplate.update(sql, id);
+    }
+
+
 }

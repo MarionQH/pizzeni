@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -124,11 +125,13 @@ public class AppController {
         return "redirect:/carte";
     }
 
-    @GetMapping("supprimer-produit")
+
+    @GetMapping("supprimer-produit/**")
     public String getSupprimerProduit(Long id) {
 
         //todo: appel requete sql suppression produit
         //todo: flash message ou modale "Etes vous sûr.e?"
+        produitManager.deleteProduitById(id);
 
         return "redirect:/carte";
     }
