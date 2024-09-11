@@ -41,6 +41,8 @@ public class DAOProduitMySQL implements IDAOProduit {
             typeProduit.setLibelle(rs.getString("libelle"));
             typeProduit.setId(rs.getLong("id_type_produit"));
 
+            produit.setTypeProduit(typeProduit);
+
             return produit;
         }
     };
