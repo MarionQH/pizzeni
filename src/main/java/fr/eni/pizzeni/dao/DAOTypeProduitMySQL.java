@@ -1,5 +1,6 @@
 package fr.eni.pizzeni.dao;
 
+import fr.eni.pizzeni.bo.Produit;
 import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -57,11 +58,11 @@ public class DAOTypeProduitMySQL implements IDAOTypeProduit{
     @Override
     public TypeProduit findById(Long id) {
 
-       String sql = "SELECT id_type_produit, libelle FROM type_produit WHERE id = :idTypeProduit";
+       String sql = "SELECT id_type_produit, libelle FROM type_produit WHERE id_type_produit = :idTypeProduit";
 
 
         MapSqlParameterSource map = new MapSqlParameterSource();
-       map.addValue("idTypeProduit", id);
+        map.addValue("idTypeProduit", id);
 
 
         return namedParameterJdbcTemplate.queryForObject(sql, map, TYPE_PRODUIT_ROW_MAPPER);
