@@ -84,6 +84,11 @@ System.out.println(produit);
         // envoyer les films dans le modele
         model.addAttribute("produits", produits);
 
+        for (int i = 0; i < produits.size(); i++) {
+            System.out.println(produits.get(i).getNom());
+            System.out.println(produits.get(i).getTypeProduit());
+        }
+
 
         return "carte.html";
     }
