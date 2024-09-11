@@ -10,7 +10,10 @@
 
 <div layout:fragment="content">
     <div class="uk-container">
-        <h1 class="uk-heading-xlarge eni-heading uk-flex uk-flex-center uk-flex-middle uk-align-center">Nos pizzas</h1>
+        <h1 class="uk-heading-xlarge eni-heading uk-flex uk-flex-center uk-flex-middle uk-align-center">La carte</h1>
+        <h3>Les pizzas</h3>
+
+
 
         <div th:each="produit : ${produits}" class="uk-padding-small">
             <div class="eni-movie-card">
@@ -20,15 +23,25 @@
                     </div>
                     <p th:text="${produit.prix} + '€'" class="eni-desc"></p>
                     <p th:text="${produit.description}" class="eni-desc"></p>
+                    <div class=" uk-margin">
+                        <a href="/" class="uk-button uk-button-primary uk-width-1-1">Ajouter au panier</a>
+                    </div>
+                    <div class=" uk-margin">
+                        <a href="/" class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
+                    </div>
+                    <div class=" uk-margin">
+                        <a href="/" class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+                    </div>
                 </div>
-                </a>
             </div>
         </div>
+        <h3>Les boissons</h3>
+        <!--       todo ajouter un bloc de produits-->
+        <h3>Les desserts</h3>
+        <!--       todo ajouter un bloc de produits-->
     </div>
-
-
-
-
+</div>
+</div>
 </div>
 
 </body>
