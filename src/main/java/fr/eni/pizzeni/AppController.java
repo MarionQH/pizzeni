@@ -18,14 +18,14 @@ public class AppController {
 
     private final ProduitManager produitManager;
 
-    @Autowired
-    ITypeProduitManager typeProduitManager;
+
 
     public AppController(ProduitManager produitManager) {
         this.produitManager = produitManager;
     }
 
-
+    @Autowired
+    ITypeProduitManager typeProduitManager;
 
     @GetMapping("")
     public String getBase() {
@@ -44,7 +44,8 @@ public class AppController {
 
         Produit produit = new Produit();
         List<TypeProduit> typesProduits= typeProduitManager.getTypesProduits();
-
+System.out.println(produit);
+        System.out.println(typesProduits);
         model.addAttribute("typesProduits", typesProduits);
         model.addAttribute("produit", produit);
 
