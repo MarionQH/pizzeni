@@ -6,12 +6,13 @@
 <div layout:fragment="content">
 
   <div>
-    <h1> Ajouter à la carte </h1>
+    <h1> Gérer la carte </h1>
   </div>
+
 
   <form th:object="${produit}" method="post" th:action="@{/ajout-pizza}" >
 
-    <input th:field="*{id}" type="hidden">
+<!--    <input th:field="*{id}" type="hidden">-->
 
     <div class=" uk-margin">
       <label for="nom">Titre:</label>
@@ -23,7 +24,7 @@
     </div>
 
     <div class=" uk-margin">
-      <label for="description"> descritpion:</label>
+      <label for="description"> description:</label>
       <input th:field="*{description}" class="uk-input"/>
 <!--      <ul th:if="${#fields.hasErrors('description')}">-->
 <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('year')}" th:text="${error}">-->

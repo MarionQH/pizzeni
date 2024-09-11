@@ -45,8 +45,12 @@ public class AppController {
         Produit produit = new Produit();
         List<TypeProduit> typesProduits= typeProduitManager.getTypesProduits();
 System.out.println(produit);
+
+
         System.out.println(typesProduits);
         model.addAttribute("typesProduits", typesProduits);
+
+
         model.addAttribute("produit", produit);
 
         return "ajout-pizza.html";
