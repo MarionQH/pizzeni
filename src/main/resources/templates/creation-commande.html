@@ -32,13 +32,26 @@
             <!--      </ul>-->
         </div>
 
-        <div class=" uk-margin">
-            <label for="livraison"> livraison true or false:</label>
-            <input th:field="*{livraison}" class="uk-input"/>
-            <!--      <ul th:if="${#fields.hasErrors('description')}">-->
-            <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('year')}" th:text="${error}">-->
-            <!--        </li>-->
-            <!--      </ul>-->
+<!--        <div class=" uk-margin">-->
+<!--            <label for="livraison"> livraison true or false:</label>-->
+<!--            <input th:field="*{livraison}" class="uk-input"/>-->
+<!--            &lt;!&ndash;      <ul th:if="${#fields.hasErrors('description')}">&ndash;&gt;-->
+<!--            &lt;!&ndash;        <li class="uk-form-danger" th:each="error:${#fields.errors('year')}" th:text="${error}">&ndash;&gt;-->
+<!--            &lt;!&ndash;        </li>&ndash;&gt;-->
+<!--            &lt;!&ndash;      </ul>&ndash;&gt;-->
+<!--        </div>-->
+
+        <div>
+
+             <div>
+                 <p>livraison:</p>
+                 <label label for="livraison"> Oui</label>
+                 <input th:field="*{livraison}" type="radio"  value="true" checked />
+             </div>
+                <div>
+                     <label for="livraison">Non </label>
+                    <input  th:field="*{livraison}" type="radio" value="false"  />
+                </div>
         </div>
 
         <div class=" uk-margin">
