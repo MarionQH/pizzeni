@@ -1,5 +1,6 @@
 package fr.eni.pizzeni.dao;
 
+import fr.eni.pizzeni.bo.Commande;
 import fr.eni.pizzeni.bo.Produit;
 
 import java.util.List;
