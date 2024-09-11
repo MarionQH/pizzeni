@@ -57,10 +57,12 @@ public class DAOTypeProduitMySQL implements IDAOTypeProduit{
     @Override
     public TypeProduit findById(Long id) {
 
-       String sql = "SELECT id_type_produit, libelle FROM type_produit WHERE id = :idTypeProduit";
+        String sql = "SELECT id_type_produit, libelle FROM type_produit WHERE id = :idTypeProduit";
 
 
         MapSqlParameterSource map = new MapSqlParameterSource();
+
+
        map.addValue("idTypeProduit", id);
 
 
