@@ -51,24 +51,41 @@ public class AppController {
         return "accueil.html";
     }
 
-
+//No fonctionne pas
     @GetMapping("ajout-pizza/{id}")
 
-    public String getAjoutPizza(@PathVariable(required = false) Long id, Model model) {
+    public String getAjoutPizzaWithId(@PathVariable(required = true) Long id, Model model) {
 
-        Produit produit = new Produit();
+        Produit produit = produitManager.getProduitById(id);
         List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
-        System.out.println(produit);
+//        System.out.println(produit);
 
-
-        System.out.println(typesProduits);
+//        System.out.println(typesProduits);
         model.addAttribute("typesProduits", typesProduits);
-
 
         model.addAttribute("produit", produit);
 
         return "ajout-pizza.html";
     }
+
+
+    @GetMapping("ajout-pizza")
+    public String getAjoutPizza(Model model) {
+
+        Produit produit = new Produit();
+        List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
+//        System.out.println(produit);
+
+
+//        System.out.println(typesProduits);
+        model.addAttribute("typesProduits", typesProduits);
+
+        model.addAttribute("produit", produit);
+
+        return "ajout-pizza.html";
+    }
+
+
 
     @PostMapping("ajout-pizza")
     public String postAjoutPizza(Produit produit) {
@@ -148,10 +165,18 @@ public class AppController {
 
     @GetMapping("modifier-produit/**")
     public String getModifierProduit(@RequestParam Long id) {
+
+
+
        //todo: s'assurer que la page ajout pizza est chargée avec le bon produit
 
-        return "redirect:/ajout-pizza/{id}";
+        return "redirect:/ajout-pizza/" + id;
     }
+
+
+
+
+
 }
 
 
