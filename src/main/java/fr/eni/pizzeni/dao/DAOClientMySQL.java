@@ -47,7 +47,14 @@ public class DAOClientMySQL implements IDAOClient {
 
     @Override
     public Client selectClientById(Long id) {
-        return null;
+
+        List<Client> clients = jdbcTemplate.query("SELECT id_client,nom,prenom,rue,code_postal,ville FROM client WHERE id_client=?", CLIENT_ROW_MAPPER, id);
+        if (clients.size() == 0) {
+            return null;
+        }
+        //0 correspond à l'index de la liste (premier élément)
+        return clients.get(0);
+
     }
 
     @Override

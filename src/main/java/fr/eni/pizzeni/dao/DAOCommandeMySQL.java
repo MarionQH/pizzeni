@@ -28,6 +28,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
         public Commande mapRow(ResultSet rs, int rowNum) throws SQLException {
             Commande commande = new Commande();
             commande.setId(rs.getLong("id_commande"));
+            // getTimesTamp
             commande.setDateHeureLivraison(rs.getObject("date_heure_livraison", LocalDateTime.class));
             commande.setLivraison(rs.getBoolean("livraison"));
             commande.setPrixTotal(rs.getLong("prix_total"));
