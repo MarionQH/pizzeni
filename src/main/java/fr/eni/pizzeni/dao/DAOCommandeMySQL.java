@@ -1,5 +1,6 @@
 package fr.eni.pizzeni.dao;
 
+import fr.eni.pizzeni.bo.Client;
 import fr.eni.pizzeni.bo.Commande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,6 +36,15 @@ public class DAOCommandeMySQL implements IDAOCommande {
             commande.setEstPaye(rs.getBoolean("est_paye"));
             commande.setIdEtat(rs.getLong("ETAT_id_etat"));
 
+            Client client = new Client();
+            client.setId(rs.getLong("id_client"));
+            client.setNom(rs.getString("nom"));
+            client.setPrenom(rs.getString("prenom"));
+            client.setVille(rs.getString("ville"));
+            client.setRue(rs.getString("rue"));
+            client.setVille(rs.getString("ville"));
+            commande.setClient(client);
+
             return commande;
         }
     };
@@ -44,7 +54,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
     @Override
     public List<Commande> selectCommandes() {
 
-        String sql = "SELECT id_commande, date_heure_livraison, livraison, ETAT_id_etat, prix_total,est_paye  FROM commande ";
+        String sql = "SELECT c.id_commande, c.date_heure_livraison, c.livraison, c.ETAT_id_etat, c.prix_total, c.est_paye, cl.id_client as CLIENT_id_client  FROM commande c JOIN client cl ON c.CLIENT_id_client = cl.id_client";
 
         return jdbcTemplate.query(sql, COMMANDE_ROW_MAPPER);
 
@@ -53,7 +63,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
 
     @Override
     public Commande selectCommandeById(Long id) {
-        String sql = "SELECT id_commande, date_heure_livraison, livraison, ETAT_id_etat, prix_total,est_paye  FROM commande WHERE id_commande = :idCommande";
+        String sql = "SELECT c.id_commande, c.date_heure_livraison, c.livraison, c.ETAT_id_etat, c.prix_total, c.est_paye, cl.id_client as CLIENT_id_client  FROM commande c JOIN client cl ON c.CLIENT_id_client = cl.id_client WHERE id_commande = :idCommande";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", id);
@@ -66,13 +76,14 @@ public class DAOCommandeMySQL implements IDAOCommande {
     public void saveCommande(Commande commande) {
 
         // 1. Insérer le produit dans la table produit
-        String sql = "INSERT INTO commande (date_heure_livraison, livraison, ETAT_id_etat, prix_total,est_paye ) VALUES (:dateHeureLivraison,:livraison,:idEtat,:prixTot,:paye)";
+        String sql = "INSERT INTO commande (date_heure_livraison, livraison, ETAT_id_etat, prix_total,est_paye,CLIENT_id_client ) VALUES (:dateHeureLivraison,:livraison,:idEtat,:prixTot,:paye,:CLIENT_id_client)";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("dateHeureLivraison", commande.getDateHeureLivraison());
         mapSqlParameterSource.addValue("livraison", commande.isLivraison());
         mapSqlParameterSource.addValue("idEtat", commande.getIdEtat());
         mapSqlParameterSource.addValue("prixTot", commande.getPrixTotal());
         mapSqlParameterSource.addValue("paye", commande.isEstPaye());
+        mapSqlParameterSource.addValue(":CLIENT_id_client)",commande.getClient().getId());
 
         // Exécuter la requête pour insérer le produit
         namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);

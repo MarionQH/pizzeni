@@ -11,8 +11,7 @@ public class Commande {
     private Long prixTotal;
     private boolean estPaye;
     private Long idEtat;
-
-//    private Client client;
+    private Client client;
 
 
 
@@ -28,10 +27,10 @@ public class Commande {
         this.idEtat = idEtat;
     }
 
-//    public Commande (Long id,boolean estPaye, LocalDateTime dateHeureLivraison, boolean livraison, Long prixTotal,Etat etat,Client client) {
-//        this(id, estPaye, prixTotal, livraison, dateHeureLivraison);
-//        this.client = client;
-//    }
+    public Commande (Long id,boolean estPaye,Long prixTotal, boolean livraison,LocalDateTime dateHeureLivraison,Long idEtat,Client client) {
+        this(id, estPaye, prixTotal, livraison, dateHeureLivraison,idEtat);
+        this.client = client;
+    }
 
     public Long getId() {
         return id;
@@ -77,5 +76,13 @@ public class Commande {
     }
     public void setIdEtat(Long idEtat) {
         this.idEtat = idEtat;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
