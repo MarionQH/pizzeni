@@ -1,0 +1,4 @@
+Use db_pizzeni;
+
+ALTER TABLE commande
+DROP FOREIGN KEY COMMANDE_ETAT_FK;

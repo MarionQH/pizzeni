@@ -83,7 +83,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
         mapSqlParameterSource.addValue("idEtat", commande.getIdEtat());
         mapSqlParameterSource.addValue("prixTot", commande.getPrixTotal());
         mapSqlParameterSource.addValue("paye", commande.isEstPaye());
-        mapSqlParameterSource.addValue(":CLIENT_id_client)",commande.getClient().getId());
+        mapSqlParameterSource.addValue("CLIENT_id_client",commande.getClient().getId());
 
         // Exécuter la requête pour insérer le produit
         namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
