@@ -21,7 +21,6 @@ public class AppController {
     private final ProduitManager produitManager;
 
 
-
     public AppController(ProduitManager produitManager) {
         this.produitManager = produitManager;
     }
@@ -31,6 +30,7 @@ public class AppController {
 
     @Autowired
     ICommandeManager commandeManager;
+
 
     @GetMapping("")
     public String getBase() {
@@ -48,8 +48,8 @@ public class AppController {
     public String getAjoutPizza(Long id, Model model) {
 
         Produit produit = new Produit();
-        List<TypeProduit> typesProduits= typeProduitManager.getTypesProduits();
-System.out.println(produit);
+        List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
+        System.out.println(produit);
 
 
         System.out.println(typesProduits);
@@ -73,7 +73,7 @@ System.out.println(produit);
     @GetMapping("creation-commande")
     public String getCreationCommande(Long id, Model model) {
 
-        Commande commande =new Commande();
+        Commande commande = new Commande();
 
         model.addAttribute("commande", commande);
 
@@ -86,7 +86,7 @@ System.out.println(produit);
 
         commandeManager.saveCommande(commande);
 
-        return  "redirect:/creation-commande";
+        return "redirect:/creation-commande";
     }
 
     @GetMapping("carte")
@@ -108,11 +108,40 @@ System.out.println(produit);
     }
 
     @GetMapping("liste-commandes")
-        public String getListCommandes() {
-            return "commandes.html";
-        }
+    public String getListCommandes() {
+        return "commandes.html";
+    }
 
 
+    // ajout @Chloé test Controller get/ redirect
 
+    @GetMapping("ajout-panier")
+    public String getAjoutPanier() {
+
+        //todo: code pour ajouter produit au panier
+        //todo: flash message "produit ajouté"
+
+        return "redirect:/carte";
+    }
+
+    @GetMapping("supprimer-produit")
+    public String getSupprimerProduit(Long id) {
+
+        //todo: appel requete sql suppression produit
+        //todo: flash message ou modale "Etes vous sûr.e?"
+
+        return "redirect:/carte";
+    }
+
+    @GetMapping("modifier-produit")
+    public String getModifierProduit(Long id) {
+
+       //todo: s'assurer que la page ajout pizza est chargée avec le bon produit
+        return "ajout-pizza.html";
+    }
 }
+
+
+
+
 
