@@ -142,7 +142,7 @@ public class AppController {
     }
 
 
-    // ajout @Chloé test Controller get/ redirect
+
 
     @GetMapping("ajout-panier")
     public String getAjoutPanier() {
@@ -164,15 +164,7 @@ public class AppController {
         return "redirect:/carte";
     }
 
-    @GetMapping("modifier-produit/**")
-    public String getModifierProduit(@RequestParam Long id) {
 
-
-
-       //todo: s'assurer que la page ajout pizza est chargée avec le bon produit
-
-        return "redirect:/ajout-pizza/" + id;
-    }
 
 
 
