@@ -67,11 +67,13 @@ public class DAOProduitMySQL implements IDAOProduit {
     @Override
     public void saveProduit(Produit produit) {
 
+        if (produit.getId() == null) {
+
         // 1. Insérer le produit dans la table produit
-        String sql = "INSERT INTO produit (nom,description,prix,image_url, TYPE_PRODUIT_id_type_produit) VALUES (:nomProduit,:desciptionProduit,:prixProduit,:urlProduit,:typeProduit)";
+        String sql = "INSERT INTO produit (nom,description,prix,image_url, TYPE_PRODUIT_id_type_produit) VALUES (:nomProduit,:descriptionProduit,:prixProduit,:urlProduit,:typeProduit)";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("nomProduit", produit.getNom());
-        mapSqlParameterSource.addValue("desciptionProduit", produit.getDescription());
+        mapSqlParameterSource.addValue("descriptionProduit", produit.getDescription());
         mapSqlParameterSource.addValue("prixProduit", produit.getPrix());
         mapSqlParameterSource.addValue("urlProduit", produit.getImageUrl());
         mapSqlParameterSource.addValue("typeProduit", produit.getTypeProduit().getId());
@@ -79,6 +81,53 @@ public class DAOProduitMySQL implements IDAOProduit {
         // Exécuter la requête pour insérer le produit
         namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 
+        return;
+        }
+
+        if (produit.getId() != null) {
+
+            if (produit.getId() != null) {
+                String sql = "UPDATE produit " +
+                        "SET nom = :nomProduit, " +
+                        "description = :descriptionProduit, " +
+                        "prix = :prixProduit, " +
+                        "image_url = :urlProduit, " +
+                        "TYPE_PRODUIT_id_type_produit = :typeProduit " +
+                        "WHERE id_produit = :idProduit"; // Fix: use :idProduit as a placeholder
+
+                MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+                mapSqlParameterSource.addValue("nomProduit", produit.getNom());
+                mapSqlParameterSource.addValue("descriptionProduit", produit.getDescription());
+                mapSqlParameterSource.addValue("prixProduit", produit.getPrix());
+                mapSqlParameterSource.addValue("urlProduit", produit.getImageUrl());
+                mapSqlParameterSource.addValue("typeProduit", produit.getTypeProduit().getId());
+                mapSqlParameterSource.addValue("idProduit", produit.getId()); // Fix: add the idProduit value
+
+                namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+            }
+
+
+
+
+
+//            String sql = "UPDATE produit " +
+//                    "SET nom = :nomProduit, " +
+//                    "description = :descriptionProduit, " +
+//                    "prix = :prixProduit, " +
+//                    "image_url = :urlProduit, " +
+//                    "TYPE_PRODUIT_id_type_produit = :typeProduit " +
+//                    "WHERE id_produit = id";
+//
+//            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+//            mapSqlParameterSource.addValue("nomProduit", produit.getNom());
+//            mapSqlParameterSource.addValue("descriptionProduit", produit.getDescription());
+//            mapSqlParameterSource.addValue("prixProduit", produit.getPrix());
+//            mapSqlParameterSource.addValue("urlProduit", produit.getImageUrl());
+//            mapSqlParameterSource.addValue("typeProduit", produit.getTypeProduit().getId());
+//
+//            namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+
+        }
     }
 
     @Override

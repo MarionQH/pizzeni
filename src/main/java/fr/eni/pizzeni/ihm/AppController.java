@@ -51,8 +51,8 @@ public class AppController {
         return "accueil.html";
     }
 
-//No fonctionne pas
-    @GetMapping("maj-produit/{id}")
+
+    @GetMapping("gestion-produit/{id}")
 
     public String getAjoutPizzaWithId(@PathVariable Long id, Model model) {
 
@@ -61,9 +61,7 @@ public class AppController {
         System.out.println(produit.toString());
 
         List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
-//        System.out.println(produit);
 
-//        System.out.println(typesProduits);
         model.addAttribute("typesProduits", typesProduits);
 
         model.addAttribute("produit", produit);
@@ -72,7 +70,7 @@ public class AppController {
     }
 
 
-    @GetMapping("ajout-produit")
+    @GetMapping("gestion-produit")
     public String getAjoutPizza(Model model) {
 
         Produit produit = new Produit();
@@ -90,12 +88,12 @@ public class AppController {
 
 
 
-    @PostMapping("ajout-pizza")
+    @PostMapping("gestion-produit")
     public String postAjoutPizza(Produit produit) {
 
         produitManager.saveProduit(produit);
 
-        return "redirect:/ajout-pizza";
+        return "redirect:/gestion-produit";
     }
 
 
