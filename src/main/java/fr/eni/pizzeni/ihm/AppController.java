@@ -115,7 +115,7 @@ public class AppController {
 
         commandeManager.saveCommande(commande);
 
-        return "redirect:/creation-commande";
+        return "redirect:/panier";
     }
 
     @GetMapping("carte")
@@ -165,6 +165,19 @@ public class AppController {
     }
 
 
+    @GetMapping("instancier-un-client")
+    public String getInstancierUnClient() {
+
+        Client client1 = new Client();
+
+        System.out.println(client1.toString());
+
+        Client client2 = new Client(2L,"Jouannet","Lucille","alice.jouannet@gmail.com","123456","rue des lapins",49000L,"Angers");
+
+        System.out.println(client2.toString());
+
+        return "base.html";
+    }
 
 
 
