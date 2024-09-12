@@ -93,11 +93,11 @@ public class AppController {
 
         produitManager.saveProduit(produit);
 
-        return "redirect:/gestion-produit";
+        return "redirect:/carte";
     }
 
 
-    @GetMapping("creation-commande")
+    @GetMapping("panier")
     public String getCreationCommande(Long id, Model model) {
 
         Commande commande = new Commande();
@@ -110,7 +110,7 @@ public class AppController {
         return "creation-commande.html";
     }
 
-    @PostMapping("creation-commande")
+    @PostMapping("panier")
     public String postCreationCommande(Commande commande) {
 
         commandeManager.saveCommande(commande);

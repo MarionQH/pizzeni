@@ -10,7 +10,7 @@
     </div>
 
 
-    <form th:object="${commande}" method="post" th:action="@{/creation-commande}" >
+    <form th:object="${commande}" method="post" th:action="@{/panier}" >
 
             <input th:field="*{id}" type="hidden">
 
@@ -26,20 +26,8 @@
         <div class=" uk-margin">
             <label for="dateHeureLivraison">date et heure de livraison:</label>
             <input th:field="*{dateHeureLivraison}" class="uk-input" type="datetime-local" />
-            <!--      <ul th:if="${#fields.hasErrors('nom')}">-->
-            <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('nom')}" th:text="${error}">-->
-            <!--        </li>-->
-            <!--      </ul>-->
         </div>
 
-<!--        <div class=" uk-margin">-->
-<!--            <label for="livraison"> livraison true or false:</label>-->
-<!--            <input th:field="*{livraison}" class="uk-input"/>-->
-<!--            &lt;!&ndash;      <ul th:if="${#fields.hasErrors('description')}">&ndash;&gt;-->
-<!--            &lt;!&ndash;        <li class="uk-form-danger" th:each="error:${#fields.errors('year')}" th:text="${error}">&ndash;&gt;-->
-<!--            &lt;!&ndash;        </li>&ndash;&gt;-->
-<!--            &lt;!&ndash;      </ul>&ndash;&gt;-->
-<!--        </div>-->
 
         <div>
 
@@ -57,19 +45,11 @@
         <div class=" uk-margin">
             <label for="prixTotal"> Prix total:</label>
             <input th:field="*{prixTotal}" type="number" class="uk-input" label="prix"/>
-            <!--      <ul th:if="${#fields.hasErrors('prix')}">-->
-            <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('prix')}" th:text="${error}">-->
-            <!--        </li>-->
-            <!--      </ul>-->
         </div>
 
         <div class=" uk-margin">
             <label for="idEtat"> Statut</label>
             <input th:field="*{idEtat}" type="number" class="uk-input" label="statut"/>
-            <!--      <ul th:if="${#fields.hasErrors('prix')}">-->
-            <!--        <li class="uk-form-danger" th:each="error:${#fields.errors('prix')}" th:text="${error}">-->
-            <!--        </li>-->
-            <!--      </ul>-->
         </div>
 
         <div class=" uk-margin">
