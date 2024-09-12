@@ -64,6 +64,16 @@ public class DAODetailCommande implements IDAODetailCommande{
     @Override
     public void saveDetailCommande(DetailCommande detailCommande) {
 
+        // 1. Insérer le produit dans la table produit
+        String sql = "INSERT INTO DetailCommande (quantite,commande_id_commande,produit_id_produit) VALUES (:quantite,:id_commande,:id_produit)";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("quantite", detailCommande.getQuantite());
+        mapSqlParameterSource.addValue("id_commande", detailCommande.getCommande().getId());
+        mapSqlParameterSource.addValue("id_produit", detailCommande.getProduit().getId());
+
+        // Exécuter la requête pour insérer le produit
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+
     }
 
 
