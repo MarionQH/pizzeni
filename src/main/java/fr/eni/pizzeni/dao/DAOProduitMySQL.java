@@ -56,7 +56,7 @@ public class DAOProduitMySQL implements IDAOProduit {
 
     @Override
     public Produit selectProduitById(Long id) {
-        List<Produit> produits = jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit as id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = p.id_produit WHERE p.id_produit=?", PRODUIT_ROW_MAPPER, id);
+        List<Produit> produits = jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit as id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = tp.id_type_produit WHERE p.id_produit=?", PRODUIT_ROW_MAPPER, id);
         if (produits.size() == 0) {
             return null;
         }

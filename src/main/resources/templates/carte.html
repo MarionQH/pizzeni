@@ -68,13 +68,17 @@
                         <a href="/base" class="uk-button uk-button-primary uk-width-1-1">Ajouter au panier</a>
                     </div>
                     <div class=" uk-margin">
-<!--                        @chloe essai du flow modifier le produit-->
-                        <a th:href="@{/modifier-produit/(id=${produit.id})}" class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
-<!--                        <a href="/" class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>-->
+                        <!--                 flow modifier le produit-->
+
+                        <a th:href="@{'/maj-produit/' + ${produit.id}}"
+
+                           class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
                     </div>
+                    <!--                        flow de suppression de produit-->
+
                     <div class=" uk-margin">
 
-                        <!--                        flow de suppression de produit-->
+
                         <a th:href="@{/supprimer-produit/(id=${produit.id})}"
                            class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
 

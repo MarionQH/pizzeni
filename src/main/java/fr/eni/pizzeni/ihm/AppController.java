@@ -52,11 +52,14 @@ public class AppController {
     }
 
 //No fonctionne pas
-    @GetMapping("ajout-pizza/{id}")
+    @GetMapping("maj-produit/{id}")
 
-    public String getAjoutPizzaWithId(@PathVariable(required = true) Long id, Model model) {
+    public String getAjoutPizzaWithId(@PathVariable Long id, Model model) {
 
         Produit produit = produitManager.getProduitById(id);
+
+        System.out.println(produit.toString());
+
         List<TypeProduit> typesProduits = typeProduitManager.getTypesProduits();
 //        System.out.println(produit);
 
@@ -69,7 +72,7 @@ public class AppController {
     }
 
 
-    @GetMapping("ajout-pizza")
+    @GetMapping("ajout-produit")
     public String getAjoutPizza(Model model) {
 
         Produit produit = new Produit();
