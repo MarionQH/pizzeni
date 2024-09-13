@@ -6,11 +6,11 @@
 <div layout:fragment="content">
 
     <div>
-        <h1> Créer une commande </h1>
+        <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Créer une commande </h1>
     </div>
 
 
-    <form th:object="${commande}" method="post" th:action="@{/panier}" >
+    <form th:object="${commande}" method="post" th:action="@{/panier}" class="page-form">
 
             <input th:field="*{id}" type="hidden">
 

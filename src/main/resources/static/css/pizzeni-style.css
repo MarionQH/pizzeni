@@ -1,0 +1,48 @@
+.page-background {
+    background-image: url("../img/Background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 2rem;
+    background-repeat: no-repeat;
+}
+
+.page-title {
+    font-family: cursive;
+    color: #FF6161;
+}
+
+.description-produit {
+    border-style: solid;
+    border-color: #FF6161;
+    border-radius: 3em;
+    border-width: 0.25em;
+    background-color: white;
+    margin-bottom: 1.5em;
+
+}
+
+
+.page-form{
+    border-style: solid;
+    border-color: #FF6161;
+    border-radius: 3em;
+    border-width: 0.25em;
+    background-color: white;
+    margin-bottom: 1.5em;
+    padding: 1.5em;
+}
+
+.img-produit{
+    width: 40%;
+}
+
+.img-accueil{
+    display: block;
+    width: 40%;
+    margin: auto;
+}
+
+.navbar-base{
+
+}

@@ -10,79 +10,108 @@
 
 <div layout:fragment="content">
     <div class="uk-container">
-        <h1 class="uk-heading-xlarge eni-heading uk-flex uk-flex-center uk-flex-middle uk-align-center">La carte</h1>
+        <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title">La carte</h1>
         <h3>Les pizzas</h3>
 
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 1}" class="uk-padding-small">
-            <div class="eni-movie-card">
-                <div class="eni-movie-card-layer-2">
-                    <h2 th:text="${produit.nom}"></h2>
+        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 1}"
+             class="uk-padding-small description-produit">
+            <div>
+                <div>
                     <div>
+                        <a href="">
+                            <img th:src="${produit.imageUrl}" class="img-produit">
+                        </a>
                     </div>
-                    <p th:text="${produit.prix} + '€'" class="eni-desc"></p>
-                    <p th:text="${produit.description}" class="eni-desc"></p>
-                    <div class=" uk-margin">
-                        <a href="/base" class="uk-button uk-button-primary uk-width-1-1">Ajouter au panier</a>
+                    <div>
+                        <h2 th:text="${produit.nom}" class="page-title"></h2>
+
+                        <div>
+                        </div>
+                        <p th:text="${produit.prix} + '€'"></p>
+                        <p th:text="${produit.description}"></p>
                     </div>
-                    <div class=" uk-margin">
-                        <!--                 flow modifier le produit-->
-                        <a th:href="@{'/gestion-produit/' + ${produit.id}}"
-                           class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
-                    </div>
-                    <!--                        flow de suppression de produit-->
-                    <div class=" uk-margin">
-                        <a th:href="@{/supprimer-produit/(id=${produit.id})}"
-                           class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+                    <div>
+                        <div class=" uk-margin">
+                            <a th:href="@{/carte}" class="uk-icon-button" title="ajouter au panier">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                        </div>
+                        <div class=" uk-margin">
+                            <!--                 flow modifier le produit-->
+                            <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                        </div>
+                        <!--                        flow de suppression de produit-->
+                        <div class=" uk-margin">
+                            <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+
         <h3>Les boissons</h3>
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 2}" class="uk-padding-small">
-            <div class="eni-movie-card">
-                <div class="eni-movie-card-layer-2">
-                    <h2 th:text="${produit.nom}"></h2>
+        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 2}"
+             class="uk-padding-small description-produit">
+            <div>
+                <div>
+                    <h2 th:text="${produit.nom}" class="page-title"></h2>
                     <div>
                     </div>
-                    <p th:text="${produit.prix} + '€'" class="eni-desc"></p>
-                    <p th:text="${produit.description}" class="eni-desc"></p>
+                    <p th:text="${produit.prix} + '€'"></p>
+                    <p th:text="${produit.description}"></p>
+
                     <div class=" uk-margin">
-                        <a href="/base" class="uk-button uk-button-primary uk-width-1-1">Ajouter au panier</a>
+                        <a th:href="@{/carte}" class="uk-icon-button" title="ajouter au panier">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
                     </div>
+
                     <div class=" uk-margin">
                         <!--                 flow modifier le produit-->
-                        <a th:href="@{'/gestion-produit/' + ${produit.id}}"
-                           class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
+                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
+                            <i class="fas fa-pen"></i>
+                        </a>
                     </div>
                     <!--                        flow de suppression de produit-->
                     <div class=" uk-margin">
-                        <a th:href="@{/supprimer-produit/(id=${produit.id})}"
-                           class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <h3>Les desserts</h3>
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 3}" class="uk-padding-small">
-            <div class="eni-movie-card">
-                <div class="eni-movie-card-layer-2">
-                    <h2 th:text="${produit.nom}"></h2>
+        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 3}"
+             class="uk-padding-small description-produit">
+            <div>
+                <div>
+                    <h2 th:text="${produit.nom}" class="page-title"></h2>
                     <div>
                     </div>
-                    <p th:text="${produit.prix} + '€'" class="eni-desc"></p>
-                    <p th:text="${produit.description}" class="eni-desc"></p>
+                    <p th:text="${produit.prix} + '€'"></p>
+                    <p th:text="${produit.description}"></p>
                     <div class=" uk-margin">
-                        <a href="/base" class="uk-button uk-button-primary uk-width-1-1">Ajouter au panier</a>
+                        <a th:href="@{/carte}" class="uk-icon-button" title="ajouter au panier">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
                     </div>
                     <div class=" uk-margin">
                         <!--                 flow modifier le produit-->
-                        <a th:href="@{'/gestion-produit/' + ${produit.id}}"
-                           class="uk-button uk-button-secondary uk-width-1-1">Modifier</a>
+                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
+                            <i class="fas fa-pen"></i>
+                        </a>
                     </div>
                     <!--                        flow de suppression de produit-->
                     <div class=" uk-margin">
-                        <a th:href="@{/supprimer-produit/(id=${produit.id})}"
-                           class="uk-button uk-button-danger uk-width-1-1">Supprimer</a>
+                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>

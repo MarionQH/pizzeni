@@ -6,11 +6,11 @@
 <div layout:fragment="content">
 
   <div>
-    <h1> Ajouter une pizza </h1>
+    <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Ajouter une pizza </h1>
   </div>
 
 
-  <form th:object="${produit}" method="post" th:action="@{/gestion-produit}" >
+  <form th:object="${produit}" method="post" th:action="@{/gestion-produit}" class="page-form" >
 
       <input th:if="${id != null}" th:field="*{id}" type="hidden">
 
