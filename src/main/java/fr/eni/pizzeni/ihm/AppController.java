@@ -154,11 +154,39 @@ System.out.println(detailsCommande.toString());
         return "commandes.html";
     }
 
+// Original PostMapping ajout-panier
+
+//    @PostMapping("ajout-panier")
+//    public String getAjoutPanier(Model model,DetailCommande detailCommande) {
+//
+//        // expliquer le but de la méthode
+//        //todo: code pour ajouter produit au panier
+//        //todo: flash message "produit ajouté"
+//
+//        //creer un commande vide en base de donnée
+//        Client tempClient = clientManager.getClientById(1L);
+//        Commande commande = new Commande(tempClient);
+//        commandeManager.saveCommande(commande);
+//
+//        // Récupérer l'ID de la dernière commande enregisrtée en BDD
+//        Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
+//
+//        // placer en session
+//        model.addAttribute("idCommande", idLastCommande);
+//
+//
+//
+//        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
+//
+//        return "redirect:/carte";
+//    }
+
+
 
 
 
     @PostMapping("ajout-panier")
-    public String getAjoutPanier(Model model,DetailCommande detailCommande) {
+    public String getAjoutPanier(Model model,DetailCommande detailCommande,@SessionAttribute Long idCommande) {
 
         // expliquer le but de la méthode
         //todo: code pour ajouter produit au panier
@@ -166,18 +194,42 @@ System.out.println(detailsCommande.toString());
 
         //creer un commande vide en base de donnée
         Client tempClient = clientManager.getClientById(1L);
-        Commande commande = new Commande(tempClient);
-        commandeManager.saveCommande(commande);
 
-        // Récupérer l'ID de la dernière commande enregisrtée en BDD
-        Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
+        Commande commande = null;
 
-        // placer en session
-        model.addAttribute("idCommande", idLastCommande);
+        System.out.println(idCommande);
+
+        if (idCommande != null) {
+
+             commande = commandeManager.getCommandeById(idCommande);
+        }
 
 
 
-        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
+
+
+        if (commande != null){
+
+            model.addAttribute("idCommande",idCommande);
+            detailCommandeManager.saveDetailCommande(detailCommande,idCommande);
+
+        }
+
+        if (commande == null) {
+
+            commande = new Commande(tempClient);
+            commandeManager.saveCommande(commande);
+
+            // Récupérer l'ID de la dernière commande enregisrtée en BDD
+            Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
+
+            // placer en session
+            model.addAttribute("idCommande", idLastCommande);
+
+            detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
+
+        }
+
 
         return "redirect:/carte";
     }
