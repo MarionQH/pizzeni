@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SessionAttributes({"idCommande"})
@@ -119,7 +120,7 @@ public class AppController {
         // récupérer la liste
         List<Produit> produits = produitManager.getProduits();
 
-        List<DetailCommande> detailsCommande = null;
+        List<DetailCommande> detailsCommande = new ArrayList<DetailCommande>();
 
 
 
@@ -133,7 +134,7 @@ public class AppController {
            detailsCommande.add(detailCommande);
         }
 
-
+System.out.println(detailsCommande.toString());
 
 
         // envoyer les films dans le modele

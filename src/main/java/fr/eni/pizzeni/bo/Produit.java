@@ -70,4 +70,16 @@ public class Produit {
     public void setTypeProduit(TypeProduit typeProduit) {
         this.typeProduit = typeProduit;
     }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                ", prix=" + prix +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", typeProduit=" + typeProduit +
+                '}';
+    }
 }
