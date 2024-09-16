@@ -30,7 +30,9 @@
                         <p th:text="${detailCommande.produit.getPrix()} + '€'"></p>
                         <p th:text="${detailCommande.produit.getDescription()}"></p>
 
-                        <input th:text="${detailCommande.produit.getId()}" type="hidden">
+
+<!--                        <input th:field="${detailCommande.produit.getId()}" type="hidden"/>-->
+                        <input name="produit" th:value="${detailCommande.produit.getId()}" type="hidden">
                     </div>
 
                     <div>

@@ -12,7 +12,7 @@
 
   <form th:object="${produit}" method="post" th:action="@{/gestion-produit}" class="page-form" >
 
-      <input th:if="${id != null}" th:field="*{id}" type="hidden">
+    <input th:field="*{id}" type="hidden">
 
 
     <div class=" uk-margin">
