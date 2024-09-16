@@ -13,32 +13,34 @@
         <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title">La carte</h1>
         <h3>Les pizzas</h3>
 
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 1}"
-             class="uk-padding-small description-produit">
-            <div>
+        <form th:object="${detailsCommande}" method="post" th:action="@{/ajout-panier}" class="uk-padding-small description-produit">
+
+            <div th:each="detailCommande : ${detailsCommande}" th:if="${detailCommande.typeProduit.id == 1}">
                 <div>
                     <div>
                         <a href="">
-                            <img th:src="${produit.imageUrl}" class="img-produit">
+                            <img th:src="${detailCommande.imageUrl}" class="img-produit">
                         </a>
                     </div>
                     <div>
-                        <h2 th:text="${produit.nom}" class="page-title"></h2>
+                        <h2 th:text="${detailCommande.nom}" class="page-title"></h2>
 
                         <div>
                         </div>
-                        <p th:text="${produit.prix} + '€'"></p>
-                        <p th:text="${produit.description}"></p>
+                        <p th:text="${detailCommande.prix} + '€'"></p>
+                        <p th:text="${detailCommande.description}"></p>
 
-<!--                     demander si on peut récuperer cette information dans notre controller ??-->
-                        <input th:text="${produit.id}" type="hidden">
+                        <input th:text="${detailCommande.id}" type="hidden">
                     </div>
+
                     <div>
                         <div class=" uk-margin">
-                            <a th:href="@{/ajout-panier}" class="uk-icon-button" title="ajouter au panier">
+                            <input  type="Submit" class="uk-icon-button" title="ajouter au panier">
                                 <i class="fas fa-plus-circle"></i>
-                            </a>
+                            </input>
                         </div>
+
+
                         <div class=" uk-margin">
                             <!--                 flow modifier le produit-->
                             <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
@@ -54,83 +56,83 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <br>
 
-        <h3>Les boissons</h3>
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 2}"
-             class="uk-padding-small description-produit">
-            <div>
-                <div>
-                    <a href="">
-                        <img th:src="${produit.imageUrl}" class="img-produit">
-                    </a>
-                </div>
-                <div>
-                    <h2 th:text="${produit.nom}" class="page-title"></h2>
-                    <div>
-                    </div>
-                    <p th:text="${produit.prix} + '€'"></p>
-                    <p th:text="${produit.description}"></p>
+<!--        <h3>Les boissons</h3>-->
+<!--        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 2}"-->
+<!--             class="uk-padding-small description-produit">-->
+<!--            <div>-->
+<!--                <div>-->
+<!--                    <a href="">-->
+<!--                        <img th:src="${produit.imageUrl}" class="img-produit">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <h2 th:text="${produit.nom}" class="page-title"></h2>-->
+<!--                    <div>-->
+<!--                    </div>-->
+<!--                    <p th:text="${produit.prix} + '€'"></p>-->
+<!--                    <p th:text="${produit.description}"></p>-->
 
-                    <div class=" uk-margin">
-                        <a th:href="@{/ajout-panier}" class="uk-icon-button" title="ajouter au panier">
-                            <i class="fas fa-plus-circle"></i>
-                        </a>
-                    </div>
+<!--                    <div class=" uk-margin">-->
+<!--                        <a th:href="@{/ajout-panier}" class="uk-icon-button" title="ajouter au panier">-->
+<!--                            <i class="fas fa-plus-circle"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                    <div class=" uk-margin">
-                        <!--                 flow modifier le produit-->
-                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
-                            <i class="fas fa-pen"></i>
-                        </a>
-                    </div>
-                    <!--                        flow de suppression de produit-->
-                    <div class=" uk-margin">
-                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h3>Les desserts</h3>
-        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 3}"
-             class="uk-padding-small description-produit">
-            <div>
-                <div>
-                    <a href="">
-                        <img th:src="${produit.imageUrl}" class="img-produit">
-                    </a>
-                </div>
-                <div>
+<!--                    <div class=" uk-margin">-->
+<!--                        &lt;!&ndash;                 flow modifier le produit&ndash;&gt;-->
+<!--                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">-->
+<!--                            <i class="fas fa-pen"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                        flow de suppression de produit&ndash;&gt;-->
+<!--                    <div class=" uk-margin">-->
+<!--                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">-->
+<!--                            <i class="fas fa-trash-alt"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <h3>Les desserts</h3>-->
+<!--        <div th:each="produit : ${produits}" th:if="${produit.typeProduit.id == 3}"-->
+<!--             class="uk-padding-small description-produit">-->
+<!--            <div>-->
+<!--                <div>-->
+<!--                    <a href="">-->
+<!--                        <img th:src="${produit.imageUrl}" class="img-produit">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div>-->
 
-                    <h2 th:text="${produit.nom}" class="page-title"></h2>
-                    <div>
-                    </div>
-                    <p th:text="${produit.prix} + '€'"></p>
-                    <p th:text="${produit.description}"></p>
-                    <div class=" uk-margin">
-                        <a th:href="@{/ajout-panier}" class="uk-icon-button" title="ajouter au panier">
-                            <i class="fas fa-plus-circle"></i>
-                        </a>
-                    </div>
-                    <div class=" uk-margin">
-                        <!--                 flow modifier le produit-->
-                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">
-                            <i class="fas fa-pen"></i>
-                        </a>
-                    </div>
-                    <!--                        flow de suppression de produit-->
-                    <div class=" uk-margin">
-                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                    <h2 th:text="${produit.nom}" class="page-title"></h2>-->
+<!--                    <div>-->
+<!--                    </div>-->
+<!--                    <p th:text="${produit.prix} + '€'"></p>-->
+<!--                    <p th:text="${produit.description}"></p>-->
+<!--                    <div class=" uk-margin">-->
+<!--                        <a th:href="@{/ajout-panier}" class="uk-icon-button" title="ajouter au panier">-->
+<!--                            <i class="fas fa-plus-circle"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <div class=" uk-margin">-->
+<!--                        &lt;!&ndash;                 flow modifier le produit&ndash;&gt;-->
+<!--                        <a th:href="@{'/gestion-produit/' + ${produit.id}}" class="uk-icon-button" title="modifier">-->
+<!--                            <i class="fas fa-pen"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                        flow de suppression de produit&ndash;&gt;-->
+<!--                    <div class=" uk-margin">-->
+<!--                        <a th:href="@{/supprimer-produit/(id=${produit.id})}" class="uk-icon-button" title="supprimer">-->
+<!--                            <i class="fas fa-trash-alt"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </div>
 </div>
