@@ -12,14 +12,12 @@ import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@SessionAttributes({"idCommande"})
 @Controller
 public class AppController {
 
@@ -127,10 +125,10 @@ public class AppController {
         // envoyer les films dans le modele
         model.addAttribute("produits", produits);
 
-        for (int i = 0; i < produits.size(); i++) {
-            System.out.println(produits.get(i).getNom());
-            System.out.println(produits.get(i).getTypeProduit());
-        }
+//        for (int i = 0; i < produits.size(); i++) {
+//            System.out.println(produits.get(i).getNom());
+//            System.out.println(produits.get(i).getTypeProduit());
+//        }
 
 
         return "carte.html";
@@ -145,10 +143,23 @@ public class AppController {
 
 
     @GetMapping("ajout-panier")
-    public String getAjoutPanier() {
+    public String getAjoutPanier(Model model) {
 // expliquer le but de la méthode
         //todo: code pour ajouter produit au panier
         //todo: flash message "produit ajouté"
+
+
+        Client tempClient = clientManager.getClientById(1L);
+        Commande commande = new Commande(tempClient);
+        commandeManager.saveCommande(commande);
+
+        model.addAttribute("idCommande", commande.getId());
+
+       Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
+
+       System.out.println(idLastCommande);
+
+        // placer en session
 
         return "redirect:/carte";
     }

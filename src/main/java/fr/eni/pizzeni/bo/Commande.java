@@ -2,6 +2,7 @@ package fr.eni.pizzeni.bo;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Commande {
@@ -19,6 +20,20 @@ public class Commande {
 
 
     public Commande() {
+    }
+
+    public Commande (Client client){
+
+        this.id = 0L;
+        this.dateHeureLivraison = LocalDateTime.of(2024, 1, 1, 0, 0);
+        this.livraison = false;
+        this.prixTotal = 0L;
+        this.estPaye = false;
+        this.idEtat = 1L;
+        this.client = client;
+        this.detailsCommandes = new ArrayList<>();
+
+
     }
 
     public Commande(Long id, boolean estPaye, Long prixTotal, boolean livraison, LocalDateTime dateHeureLivraison, Long idEtat) {
@@ -102,5 +117,19 @@ public class Commande {
 
     public void setDetailsCommandes(List<DetailCommande> detailsCommandes) {
         this.detailsCommandes = detailsCommandes;
+    }
+
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "id=" + id +
+                ", dateHeureLivraison=" + dateHeureLivraison +
+                ", livraison=" + livraison +
+                ", prixTotal=" + prixTotal +
+                ", estPaye=" + estPaye +
+                ", idEtat=" + idEtat +
+                ", client=" + client +
+                ", detailsCommandes=" + detailsCommandes +
+                '}';
     }
 }

@@ -35,4 +35,11 @@ public class CommandeManager implements ICommandeManager {
         daoCommande.saveCommande(commande);
 
     }
+
+    @Override
+    public Long getIdLastCommandeEnregistreeBDD() {
+
+      return daoCommande.getIdLastCommandeEnregistreeBDD();
+
+    }
 }

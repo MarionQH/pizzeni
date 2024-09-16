@@ -90,4 +90,15 @@ public class DAOCommandeMySQL implements IDAOCommande {
 
 
     }
+
+    @Override
+    public Long getIdLastCommandeEnregistreeBDD() {
+
+
+        // 2. Récupérer l'id du film récemment inséré (si auto-incrémenté par la base de données)
+       Long lastIdCommande = namedParameterJdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", new MapSqlParameterSource(), Long.class);
+       return lastIdCommande;
+    }
+
+
 }

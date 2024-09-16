@@ -12,4 +12,7 @@ public interface IDAOCommande {
     public Commande selectCommandeById(Long id);
 
     public void saveCommande(Commande commande);
+
+    public Long getIdLastCommandeEnregistreeBDD();
+
 }
