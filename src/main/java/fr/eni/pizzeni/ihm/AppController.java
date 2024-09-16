@@ -155,6 +155,7 @@ public class AppController {
 
         model.addAttribute("idCommande", commande.getId());
 
+
        Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
 
        System.out.println(idLastCommande);
