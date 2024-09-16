@@ -157,9 +157,10 @@ System.out.println(detailsCommande.toString());
 
 
 
-    @GetMapping("ajout-panier")
-    public String getAjoutPanier(Model model) {
-// expliquer le but de la méthode
+    @PostMapping("ajout-panier")
+    public String getAjoutPanier(Model model,DetailCommande detailCommande) {
+
+        // expliquer le but de la méthode
         //todo: code pour ajouter produit au panier
         //todo: flash message "produit ajouté"
 
@@ -174,19 +175,13 @@ System.out.println(detailsCommande.toString());
         // placer en session
         model.addAttribute("idCommande", idLastCommande);
 
-        //Ajouter la ligne detail commande dans la table en utilisant l'id récupéré au dessus
-        // et le produit séléctionné par l'utilisateur.
-//        Produit produit = produitManager.getProduitById(idpage);
-
-//        DetailCommande detailCommande = new DetailCommande(1,produit);
-//        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
 
 
-
-
+        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
 
         return "redirect:/carte";
     }
+
 
 
     @GetMapping("supprimer-produit/**")
