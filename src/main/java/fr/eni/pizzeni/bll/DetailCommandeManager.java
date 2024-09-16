@@ -27,9 +27,9 @@ public class DetailCommandeManager implements IDetailCommandeManager{
     }
 
     @Override
-    public void saveDetailCommande(DetailCommande detailCommande) {
+    public void saveDetailCommande(DetailCommande detailCommande,Long idCommande) {
 
-        daodetailCommande.saveDetailCommande(detailCommande);
+        daodetailCommande.saveDetailCommande(detailCommande,idCommande);
 
     }
 }

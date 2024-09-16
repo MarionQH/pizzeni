@@ -6,14 +6,12 @@ public class DetailCommande {
 
     private int quantite;
     private Produit produit;
-    private Commande commande;
 
     public DetailCommande() {
     }
 
-    public DetailCommande(int quantite, Commande commande, Produit produit) {
+    public DetailCommande(int quantite, Produit produit) {
         this.quantite = quantite;
-        this.commande = commande;
         this.produit = produit;
     }
 
@@ -33,13 +31,6 @@ public class DetailCommande {
         this.produit = produit;
     }
 
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
 
     @Override
     public String toString() {

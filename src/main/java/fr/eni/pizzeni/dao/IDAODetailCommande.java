@@ -11,5 +11,5 @@ public interface IDAODetailCommande {
 
     public DetailCommande selectDetailCommandeByIdCommande (Long id);
 
-    public void saveDetailCommande(DetailCommande detailCommande);
+    public void saveDetailCommande(DetailCommande detailCommande,Long idCommande);
 }
