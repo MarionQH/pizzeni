@@ -2,6 +2,7 @@ package fr.eni.pizzeni.bo;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Commande {
 
@@ -11,8 +12,10 @@ public class Commande {
     private Long prixTotal;
     private boolean estPaye;
     private Long idEtat;
-    private Client client;
 
+    //Associations
+    private Client client;
+    private List<DetailCommande> detailsCommandes;
 
 
     public Commande() {
@@ -27,9 +30,16 @@ public class Commande {
         this.idEtat = idEtat;
     }
 
+    //Constructeur avec client en plus
     public Commande (Long id,boolean estPaye,Long prixTotal, boolean livraison,LocalDateTime dateHeureLivraison,Long idEtat,Client client) {
         this(id, estPaye, prixTotal, livraison, dateHeureLivraison,idEtat);
         this.client = client;
+    }
+
+    //Constructeur avec list detail commande en plus
+    public Commande (Long id,boolean estPaye,Long prixTotal, boolean livraison,LocalDateTime dateHeureLivraison,Long idEtat,Client client,List<DetailCommande> detailsCommandes) {
+        this(id, estPaye, prixTotal, livraison, dateHeureLivraison,idEtat,client);
+        this.detailsCommandes = detailsCommandes;
     }
 
     public Long getId() {
@@ -84,5 +94,13 @@ public class Commande {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public List<DetailCommande> getDetailsCommandes() {
+        return detailsCommandes;
+    }
+
+    public void setDetailsCommandes(List<DetailCommande> detailsCommandes) {
+        this.detailsCommandes = detailsCommandes;
     }
 }
