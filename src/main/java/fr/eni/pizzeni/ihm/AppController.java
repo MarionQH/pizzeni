@@ -16,6 +16,7 @@ import java.util.List;
 public class AppController {
 
     private final ProduitManager produitManager;
+
     @Autowired
     private DetailCommandeManager detailCommandeManager;
 
