@@ -119,8 +119,25 @@ public class AppController {
         // récupérer la liste
         List<Produit> produits = produitManager.getProduits();
 
+        List<DetailCommande> detailsCommande = null;
+
+
+
+        for (int i = 0 ; i < produits.size() ; i++ ) {
+
+            DetailCommande detailCommande = new DetailCommande();
+            //detailCommande = qte et produit
+            detailCommande.setProduit(produits.get(i));
+            detailCommande.setQuantite(1);
+
+           detailsCommande.add(detailCommande);
+        }
+
+
+
+
         // envoyer les films dans le modele
-        model.addAttribute("produits", produits);
+        model.addAttribute("detailsCommande", detailsCommande);
 
 //        for (int i = 0; i < produits.size(); i++) {
 //            System.out.println(produits.get(i).getNom());
@@ -158,10 +175,10 @@ public class AppController {
 
         //Ajouter la ligne detail commande dans la table en utilisant l'id récupéré au dessus
         // et le produit séléctionné par l'utilisateur.
-        Produit produit = produitManager.getProduitById(idpage);
+//        Produit produit = produitManager.getProduitById(idpage);
 
-        DetailCommande detailCommande = new DetailCommande(1,produit);
-        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
+//        DetailCommande detailCommande = new DetailCommande(1,produit);
+//        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
 
 
 
