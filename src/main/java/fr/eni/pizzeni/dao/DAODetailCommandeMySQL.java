@@ -60,7 +60,7 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
     public void saveDetailCommande(DetailCommande detailCommande,Long idCommande) {
 
         // 1. Insérer le produit dans la table produit
-        String sql = "INSERT INTO DetailCommande (quantite,commande_id_commande,produit_id_produit) VALUES (:quantite,:id_commande,:id_produit)";
+        String sql = "INSERT INTO detail_commande (quantite,commande_id_commande,produit_id_produit) VALUES (:quantite,:id_commande,:id_produit)";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("quantite", detailCommande.getQuantite());
         mapSqlParameterSource.addValue("id_commande",idCommande);
