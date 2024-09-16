@@ -1,14 +1,8 @@
 package fr.eni.pizzeni.ihm;
 
 
-import fr.eni.pizzeni.bll.IClientManager;
-import fr.eni.pizzeni.bll.ICommandeManager;
-import fr.eni.pizzeni.bll.ITypeProduitManager;
-import fr.eni.pizzeni.bll.ProduitManager;
-import fr.eni.pizzeni.bo.Client;
-import fr.eni.pizzeni.bo.Commande;
-import fr.eni.pizzeni.bo.Produit;
-import fr.eni.pizzeni.bo.TypeProduit;
+import fr.eni.pizzeni.bll.*;
+import fr.eni.pizzeni.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +16,8 @@ import java.util.List;
 public class AppController {
 
     private final ProduitManager produitManager;
+    @Autowired
+    private DetailCommandeManager detailCommandeManager;
 
 
     public AppController(ProduitManager produitManager) {
@@ -148,18 +144,27 @@ public class AppController {
         //todo: code pour ajouter produit au panier
         //todo: flash message "produit ajouté"
 
-
+        //creer un commande vide en base de donnée
         Client tempClient = clientManager.getClientById(1L);
         Commande commande = new Commande(tempClient);
         commandeManager.saveCommande(commande);
 
-        model.addAttribute("idCommande", commande.getId());
-
-       Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
-
-       System.out.println(idLastCommande);
+        // Récupérer l'ID de la dernière commande enregisrtée en BDD
+        Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
 
         // placer en session
+        model.addAttribute("idCommande", idLastCommande);
+
+        //Ajouter la ligne detail commande dans la table en utilisant l'id récupéré au dessus
+        // et le produit séléctionné par l'utilisateur.
+        Produit produit = produitManager.getProduitById(idpage);
+
+        DetailCommande detailCommande = new DetailCommande(1,produit);
+        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
+
+
+
+
 
         return "redirect:/carte";
     }

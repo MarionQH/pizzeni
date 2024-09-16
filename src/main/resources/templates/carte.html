@@ -29,6 +29,9 @@
                         </div>
                         <p th:text="${produit.prix} + '€'"></p>
                         <p th:text="${produit.description}"></p>
+
+<!--                     demander si on peut récuperer cette information dans notre controller ??-->
+                        <input th:text="${produit.id}" type="hidden">
                     </div>
                     <div>
                         <div class=" uk-margin">
