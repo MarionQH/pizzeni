@@ -45,4 +45,14 @@ public class Client extends Utilisateur {
     public void setVille(String ville) {
         this.ville = ville;
     }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "rue='" + rue + '\'' +
+                ", codePostal=" + codePostal +
+                ", ville='" + ville + '\'' +
+                '}';
+    }
 }

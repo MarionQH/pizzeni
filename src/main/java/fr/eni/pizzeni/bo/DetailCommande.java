@@ -5,8 +5,8 @@ import java.util.List;
 public class DetailCommande {
 
     private int quantite;
-    private Commande commande;
     private Produit produit;
+    private Commande commande;
 
     public DetailCommande() {
     }
@@ -25,6 +25,14 @@ public class DetailCommande {
         this.quantite = quantite;
     }
 
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
+    }
+
     public Commande getCommande() {
         return commande;
     }
@@ -33,11 +41,14 @@ public class DetailCommande {
         this.commande = commande;
     }
 
-    public Produit getProduit() {
-        return produit;
-    }
-
-    public void setProduit(Produit produit) {
-        this.produit = produit;
+    @Override
+    public String toString() {
+        return "DetailCommande{" +
+                "quantite=" + quantite +
+                ", produit=" + produit +
+                '}';
     }
 }
+
+
+

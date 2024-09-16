@@ -1,6 +1,5 @@
 package fr.eni.pizzeni.dao;
 
-import fr.eni.pizzeni.bo.Client;
 import fr.eni.pizzeni.bo.Commande;
 import fr.eni.pizzeni.bo.DetailCommande;
 import fr.eni.pizzeni.bo.Produit;
@@ -13,11 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public class DAODetailCommande implements IDAODetailCommande{
+public class DAODetailCommandeMySQL implements IDAODetailCommande{
 
     @Autowired
     JdbcTemplate jdbcTemplate;
