@@ -6,11 +6,45 @@
 <div layout:fragment="content">
 
     <div>
-        <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Créer une commande </h1>
+        <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Mon panier </h1>
     </div>
 
 
-    <form th:object="${commande}" method="post" th:action="@{/panier}" class="page-form">
+    <form th:object="${detailsCommande}" method="post" th:action="@{/panier}" class="page-form">
+
+<!--        Partie details commande-->
+
+        <div th:each="detailCommande : ${detailsCommande}">
+
+<!--            Quantité -->
+
+            <select th:field="*{detailCommande.quantite}" class="uk-width-1-1">
+
+                <option value="1"  text="1"></option>
+                <option value="2"  text="2"></option>
+                <option value="3"  text="3"></option>
+                <option value="4"  text="4"></option>
+                <option value="5"  text="5"></option>
+                <option value="6"  text="6"></option>
+                <option value="7"  text="7"></option>
+                <option value="8"  text="8"></option>
+                <option value="9"  text="9"></option>
+                <option value="10" text="10"></option>
+
+            </select>
+
+
+<!--            nom de du produit -->
+
+
+
+<!--            prix-->
+
+
+
+        </div>
+
+<!--           Partie commande -->
 
             <input th:field="*{id}" type="hidden">
 

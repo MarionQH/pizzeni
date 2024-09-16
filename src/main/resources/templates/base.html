@@ -30,14 +30,14 @@
 <nav class= "uk-navbar navbar-base">
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-
-            <li  class="uk-active"><a th:href="@{/accueil}">Accueil</a></li>
             <li  class="uk-parent"><a th:href="@{/carte}">Notre Carte</a></li>
-            <li  class="uk-parent"><a th:href="@{/gestion-produit}">Ajouter un produit</a></li>
-            <li  class="uk-parent"><a th:href="@{/panier}">Commander</a></li>
+            <li  class="uk-parent"><a th:href="@{/gestion-produit}" >Ajouter un produit</a></li>
             <li  class="uk-parent"><a th:href="@{/liste-commandes}">Commandes</a></li>
-
         </ul>
+
+        <a th:href="@{/panier}" class="uk-icon-button" title="panier">
+            <i class="fas fa-shopping-basket"></i>
+        </a>
 
         <a sec:authorize="!isAuthenticated" title="Se connecter"  class="uk-icon-button" th:href="@{/login}">
             <i class="fas fa-sign-in-alt"></i></a>
