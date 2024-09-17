@@ -31,7 +31,7 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
             detailCommande.setQuantite(rs.getInt("quantite"));
 
             Produit produit = new Produit();
-            produit.setId(rs.getLong("id_produit"));
+            produit.setId(rs.getLong("produit_id_produit"));
             detailCommande.setProduit(produit);
 
             return detailCommande;
@@ -46,13 +46,13 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
     }
 
     @Override
-    public DetailCommande selectDetailCommandeByIdCommande(Long idCommande) {
+    public List<DetailCommande> selectDetailsCommandeByIdCommande(Long idCommande) {
         String sql = "SELECT dc.quantite, dc.commande_id_commande as id_commande, dc.produit_id_produit as id_produit,p.nom as nom_produit, p.prix as prix_produit FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", idCommande);
 
-        return namedParameterJdbcTemplate.queryForObject(sql, map, DETAIL_COMMANDE_ROW_MAPPER);
+        return namedParameterJdbcTemplate.query(sql, map, DETAIL_COMMANDE_ROW_MAPPER);
     }
 
     @Override

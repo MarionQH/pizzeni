@@ -9,7 +9,7 @@ public interface IDetailCommandeManager {
 
     public List<DetailCommande> getDetailsCommandes();
 
-    public DetailCommande getDetailCommandeByIdCommande(Long id);
+    public List<DetailCommande>  getDetailsCommandeByIdCommande(Long id);
 
     public void saveDetailCommande(DetailCommande detailCommande,Long idCommande);
 

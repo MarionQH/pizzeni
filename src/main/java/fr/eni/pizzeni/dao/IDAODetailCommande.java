@@ -9,7 +9,7 @@ public interface IDAODetailCommande {
 
     public List<DetailCommande> selectDetailsCommandes();
 
-    public DetailCommande selectDetailCommandeByIdCommande (Long id);
+    public List<DetailCommande> selectDetailsCommandeByIdCommande (Long id);
 
     public void saveDetailCommande(DetailCommande detailCommande,Long idCommande);
 

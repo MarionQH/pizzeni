@@ -21,9 +21,9 @@ public class DetailCommandeManager implements IDetailCommandeManager{
     }
 
     @Override
-    public DetailCommande getDetailCommandeByIdCommande(Long id) {
-        DetailCommande detailCommande = daodetailCommande.selectDetailCommandeByIdCommande(id);
-        return detailCommande;
+    public List<DetailCommande> getDetailsCommandeByIdCommande(Long id) {
+        List<DetailCommande> detailsCommande = daodetailCommande.selectDetailsCommandeByIdCommande(id);
+        return detailsCommande;
     }
 
     @Override

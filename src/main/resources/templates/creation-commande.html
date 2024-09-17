@@ -14,11 +14,11 @@
 
 <!--        Partie details commande-->
 
-        <div th:each="detailCommande : *{commande.detailsCommande}">
+        <div th:each="detailCommande : ${detailsCommande}">
 
 <!--            Quantité -->
 
-            <select name="quantite " th:value="*{commande.detailCommande.getQuantite()}" class="uk-width-1-1">
+            <select name="quantite " th:value="${detailCommande.getQuantite()}" class="uk-width-1-1">
 
                 <option value="1"  text="1"></option>
                 <option value="2"  text="2"></option>
@@ -35,13 +35,13 @@
 
 <!--            nom de du produit -->
 
-            <input name="detailsCommande" th:value="*{detailCommande.produit.getNom}">
+            <input name="detailsCommande" th:value="${detailCommande.produit.getNom()}">
 
 
 
 <!--            prix-->
 
-            <input name="detailsCommande" th:value="*{detailCommande.produit.getPrix}">
+            <input name="detailsCommande" th:value="${detailCommande.produit.getPrix()}">
 
         </div>
 
