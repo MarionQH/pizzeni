@@ -85,5 +85,13 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
 
     }
 
+    @Override
+    public Boolean detectMatchByIdCommandeAndIdProduit(Long idCommande, Long idProduit) {
+
+        
+
+        return null;
+    }
+
 
 }

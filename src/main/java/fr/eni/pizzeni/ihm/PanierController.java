@@ -87,7 +87,13 @@ public class PanierController {
         }
 
         // créer le use case où on a déjà ajouté ce détail commande au panier
-        //
+        // parser la table details commande
+        // si une ligne correspond au detailCommande,
+        // alors brancher sur la requête Udpate de Marion
+
+        List<DetailCommande> detailscommande = detailCommandeManager.getDetailsCommandes();
+
+
 
 
         detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
