@@ -15,4 +15,6 @@ public interface IDAOCommande {
 
     public Long getIdLastCommandeEnregistreeBDD();
 
+    public void updateCommande(Commande commande);
+
 }

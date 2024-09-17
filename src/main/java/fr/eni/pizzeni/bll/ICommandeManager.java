@@ -14,4 +14,6 @@ public interface ICommandeManager {
     public void saveCommande(Commande commande);
 
     public Long getIdLastCommandeEnregistreeBDD();
+
+    public void updateCommande(Commande commande);
 }

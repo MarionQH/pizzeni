@@ -42,4 +42,11 @@ public class CommandeManager implements ICommandeManager {
       return daoCommande.getIdLastCommandeEnregistreeBDD();
 
     }
+
+    @Override
+    public void updateCommande(Commande commande) {
+
+        daoCommande.updateCommande(commande);
+
+    }
 }
