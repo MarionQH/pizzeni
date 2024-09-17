@@ -39,4 +39,10 @@ public class DetailCommandeManager implements IDetailCommandeManager{
         daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
 
     }
+
+    @Override
+    public Boolean detectMatchByIdCommandeAndIdProduit(Long idCommande, Long idProduit) {
+
+        return daodetailCommande.detectMatchByIdCommandeAndIdProduit(idCommande,idProduit);
+    }
 }
