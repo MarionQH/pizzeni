@@ -98,9 +98,11 @@ public class AppController {
 
         Commande commande = new Commande();
         List<Client> clients = clientManager.getClients();
+        List<DetailCommande> detailsCommande = detailCommandeManager.getDetailsCommandes();
 
         model.addAttribute("commande", commande);
         model.addAttribute("clients", clients);
+        model.addAttribute("detailsCommande", detailsCommande);
 
 
         return "creation-commande.html";
