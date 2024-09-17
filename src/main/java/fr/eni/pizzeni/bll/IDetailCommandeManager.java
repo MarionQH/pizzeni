@@ -12,4 +12,6 @@ public interface IDetailCommandeManager {
     public DetailCommande getDetailCommandeByIdCommande(Long id);
 
     public void saveDetailCommande(DetailCommande detailCommande,Long idCommande);
+
+    public void updateDetailCommande(DetailCommande detailCommande ,Long idProduit,Long idCommande);
 }

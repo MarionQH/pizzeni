@@ -1,6 +1,6 @@
 package fr.eni.pizzeni.dao;
 
-import fr.eni.pizzeni.bo.Commande;
+
 import fr.eni.pizzeni.bo.DetailCommande;
 import fr.eni.pizzeni.bo.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +68,20 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
 
         // Exécuter la requête pour insérer le produit
         namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+
+    }
+
+    @Override
+    public void updateDetailCommande(DetailCommande detailCommande, Long idProduit, Long idCommande) {
+
+        //TODO à terminer (ajouter l'updade en fonction de l'ID commande
+
+        String sql = "UPDATE detail_commande SET quantite = :quantite WHERE produit_id_produit = :idProduit  AND commande_id_commande = :idCommande";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idProduit",idProduit);
+        mapSqlParameterSource.addValue("quantite",detailCommande.getQuantite());
+        mapSqlParameterSource.addValue("idCommande",idCommande);
+
 
     }
 

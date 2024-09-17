@@ -32,4 +32,11 @@ public class DetailCommandeManager implements IDetailCommandeManager{
         daodetailCommande.saveDetailCommande(detailCommande,idCommande);
 
     }
+
+    @Override
+    public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande) {
+
+        daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
+
+    }
 }
