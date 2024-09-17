@@ -10,15 +10,15 @@
     </div>
 
 
-    <form th:object="${detailsCommande}" method="post" th:action="@{/panier}" class="page-form">
+    <form th:object="${Commande}" method="post" th:action="@{/panier}" class="page-form">
 
 <!--        Partie details commande-->
 
-        <div th:each="detailCommande : ${detailsCommande}">
+        <div th:each="detailCommande : ${commande.detailsCommande}">
 
 <!--            Quantité -->
 
-            <select th:field="*{detailCommande.quantite}" class="uk-width-1-1">
+            <select name="quantite " th:value="*{commande.detailCommande.getQuantite()}" class="uk-width-1-1">
 
                 <option value="1"  text="1"></option>
                 <option value="2"  text="2"></option>
@@ -33,14 +33,15 @@
 
             </select>
 
-
 <!--            nom de du produit -->
+
+            <input name="detailsCommande" th:value="${detailCommande.produit.getNom}">
 
 
 
 <!--            prix-->
 
-
+            <input name="detailsCommande" th:value="${detailCommande.produit.getPrix}">
 
         </div>
 
@@ -76,11 +77,13 @@
                 </div>
         </div>
 
+<!--       Todo faire le calcul-->
         <div class=" uk-margin">
             <label for="prixTotal"> Prix total:</label>
             <input th:field="*{prixTotal}" type="number" class="uk-input" label="prix"/>
         </div>
 
+<!--todo à définir dans le controller -->
         <div class=" uk-margin">
             <label for="idEtat"> Statut</label>
             <input th:field="*{idEtat}" type="number" class="uk-input" label="statut"/>

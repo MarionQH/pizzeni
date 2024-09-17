@@ -48,7 +48,7 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
 
     @Override
     public DetailCommande selectDetailCommandeByIdCommande(Long idCommande) {
-        String sql = "SELECT dc.quantite, dc.commande_id_commande as id_commande, dc.produit_id_produit as id_produit,p.nom as nom_produit FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
+        String sql = "SELECT dc.quantite, dc.commande_id_commande as id_commande, dc.produit_id_produit as id_produit,p.nom as nom_produit, p.prix as prix_produit FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", idCommande);
