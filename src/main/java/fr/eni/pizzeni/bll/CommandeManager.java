@@ -2,6 +2,7 @@ package fr.eni.pizzeni.bll;
 
 import fr.eni.pizzeni.bo.Commande;
 import fr.eni.pizzeni.dao.IDAOCommande;
+import fr.eni.pizzeni.dao.IDAODetailCommande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,8 @@ import java.util.List;
 @Component
 public class CommandeManager implements ICommandeManager {
 
+    @Autowired
+    IDAODetailCommande detailCommande;
     @Autowired
     IDAOCommande daoCommande;
 
@@ -25,6 +28,7 @@ public class CommandeManager implements ICommandeManager {
     public Commande getCommandeById(Long id) {
 
         Commande commande = daoCommande.selectCommandeById(id);
+        commande.setDetailsCommandes(detailCommande.selectDetailsCommandeByIdCommande(id));
 
         return commande;
     }
