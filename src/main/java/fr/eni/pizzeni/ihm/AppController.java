@@ -102,7 +102,7 @@ public class AppController {
 
         model.addAttribute("commande", commande);
         model.addAttribute("clients", clients);
-        model.addAttribute("detailsCommande", detailsCommande);
+
 
 
         return "creation-commande.html";
@@ -190,37 +190,44 @@ System.out.println(detailsCommande.toString());
     @PostMapping("ajout-panier")
     public String getAjoutPanier(Model model,DetailCommande detailCommande,@SessionAttribute Long idCommande) {
 
-        // expliquer le but de la méthode
-        //todo: code pour ajouter produit au panier
+         //todo: code pour ajouter produit au panier
         //todo: flash message "produit ajouté"
 
-        //creer un commande vide en base de donnée
-        Client tempClient = clientManager.getClientById(1L);
 
+
+        // initialiser une commande qui est nulle
+        Client tempClient = clientManager.getClientById(1L);
         Commande commande = null;
 
         System.out.println(idCommande);
 
+        // if idCommande (en session) a un numéro , alors) :
         if (idCommande != null) {
 
+            // récupérer la commande à partir de l'id Session
              commande = commandeManager.getCommandeById(idCommande);
         }
 
 
+        // si la commande n'est pas nulle
+        if (commande != null) {
 
+/* mettre l'id commande dans la session
+         model.addAttribute("idCommande",idCommande);
+ */
 
-
-        if (commande != null){
-
-            model.addAttribute("idCommande",idCommande);
+            // ajouter le détail commande à la commande
             detailCommandeManager.saveDetailCommande(detailCommande,idCommande);
 
         }
 
-        if (commande == null) {
+        // Si l'id commande est nul, alors
+        if (idCommande == null) {
 
             commande = new Commande(tempClient);
             commandeManager.saveCommande(commande);
+
+            // Enregistrer la commande en BDD (la BDD va générer un id Commande)
 
             // Récupérer l'ID de la dernière commande enregisrtée en BDD
             Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
@@ -228,6 +235,7 @@ System.out.println(detailsCommande.toString());
             // placer en session
             model.addAttribute("idCommande", idLastCommande);
 
+            // enregistrer enfin le détail commande dans la commance
             detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
 
         }
