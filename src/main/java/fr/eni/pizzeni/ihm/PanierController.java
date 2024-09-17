@@ -49,9 +49,19 @@ public class PanierController {
     }
 
     @PostMapping("panier")
-    public String postCreationCommande(Commande commande) {
+    public String postCreationCommande(Commande commande, List<DetailCommande> detailsCommande) {
 
-        commandeManager.saveCommande(commande);
+        //Update chaque ligne de detail commande
+        for (DetailCommande detailCommande : detailsCommande) {
+
+            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
+        }
+
+        //gerer le changement d'état de la commande:
+        commande.setIdEtat(2L);
+
+        //update la commande avec la nouvelle heure de livraison
+        commandeManager.updateCommande(commande);
 
         return "redirect:/panier";
     }
