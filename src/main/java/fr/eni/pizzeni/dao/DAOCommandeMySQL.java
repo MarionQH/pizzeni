@@ -42,7 +42,6 @@ public class DAOCommandeMySQL implements IDAOCommande {
             client.setPrenom(rs.getString("prenom"));
             client.setVille(rs.getString("ville"));
             client.setRue(rs.getString("rue"));
-            client.setVille(rs.getString("ville"));
             commande.setClient(client);
 
             return commande;
