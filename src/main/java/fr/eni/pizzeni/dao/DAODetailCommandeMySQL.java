@@ -30,7 +30,6 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
             DetailCommande detailCommande = new DetailCommande();
             detailCommande.setQuantite(rs.getInt("quantite"));
 
-
             Produit produit = new Produit();
             produit.setId(rs.getLong("id_produit"));
             detailCommande.setProduit(produit);
