@@ -101,12 +101,14 @@ public class PanierController {
         // si une ligne correspond au detailCommande,
         // alors brancher sur la requête Udpate de Marion
 
-        List<DetailCommande> detailscommande = detailCommandeManager.getDetailsCommandes();
+
+        Boolean hasDetailCommandMatch = detailCommandeManager.detectMatchByIdCommandeAndIdProduit(idCommande,detailCommande.getProduit().getId());
+
+        if (!hasDetailCommandMatch) {
+                        detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
+        }
 
 
-
-
-        detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
 
         return "redirect:/carte";
 

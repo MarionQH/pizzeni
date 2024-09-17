@@ -87,9 +87,20 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
     @Override
     public Boolean detectMatchByIdCommandeAndIdProduit(Long idCommande, Long idProduit) {
 
-        
+       String sql = "SELECT COUNT(*) FROM db_pizzeni.detail_commande WHERE PRODUIT_id_produit = :idProduit AND COMMANDE_id_commande = :idCommande";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("idProduit",idProduit);
+        map.addValue("idCommande",idCommande);
 
-        return null;
+        Boolean hasDetailCommandeMatch = false;
+
+       int resultSQLQuery = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+
+        if (resultSQLQuery > 0) {
+            hasDetailCommandeMatch = true;
+        }
+
+        return hasDetailCommandeMatch;
     }
 
 

@@ -14,4 +14,6 @@ public interface IDetailCommandeManager {
     public void saveDetailCommande(DetailCommande detailCommande,Long idCommande);
 
     public void updateDetailCommande(DetailCommande detailCommande ,Long idProduit,Long idCommande);
+
+    public Boolean detectMatchByIdCommandeAndIdProduit(Long idCommande, Long idProduit);
 }
