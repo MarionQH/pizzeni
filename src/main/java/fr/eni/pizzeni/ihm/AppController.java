@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-@SessionAttributes({"idCommande"})
 @Controller
 public class AppController {
 
@@ -83,7 +82,6 @@ public class AppController {
     }
 
 
-
     @PostMapping("gestion-produit")
     public String postAjoutPizza(Produit produit) {
 
@@ -92,29 +90,6 @@ public class AppController {
         return "redirect:/carte";
     }
 
-
-    @GetMapping("panier")
-    public String getCreationCommande(Long id, Model model) {
-
-        Commande commande = new Commande();
-        List<Client> clients = clientManager.getClients();
-        List<DetailCommande> detailsCommande = detailCommandeManager.getDetailsCommandes();
-
-        model.addAttribute("commande", commande);
-        model.addAttribute("clients", clients);
-
-
-
-        return "creation-commande.html";
-    }
-
-    @PostMapping("panier")
-    public String postCreationCommande(Commande commande) {
-
-        commandeManager.saveCommande(commande);
-
-        return "redirect:/panier";
-    }
 
     @GetMapping("carte")
     public String getCarte(Model model) {
@@ -125,21 +100,20 @@ public class AppController {
         List<DetailCommande> detailsCommande = new ArrayList<DetailCommande>();
 
 
-
-        for (int i = 0 ; i < produits.size() ; i++ ) {
+        for (int i = 0; i < produits.size(); i++) {
 
             DetailCommande detailCommande = new DetailCommande();
             //detailCommande = qte et produit
             detailCommande.setProduit(produits.get(i));
             detailCommande.setQuantite(1);
 
-           detailsCommande.add(detailCommande);
+            detailsCommande.add(detailCommande);
         }
 
-System.out.println(detailsCommande.toString());
+        System.out.println(detailsCommande.toString());
 
 
-        // envoyer les films dans le modele
+        // envoyer les details commande dans le modele
         model.addAttribute("detailsCommande", detailsCommande);
 
 //        for (int i = 0; i < produits.size(); i++) {
@@ -155,95 +129,6 @@ System.out.println(detailsCommande.toString());
     public String getListCommandes() {
         return "commandes.html";
     }
-
-// Original PostMapping ajout-panier
-
-//    @PostMapping("ajout-panier")
-//    public String getAjoutPanier(Model model,DetailCommande detailCommande) {
-//
-//        // expliquer le but de la méthode
-//        //todo: code pour ajouter produit au panier
-//        //todo: flash message "produit ajouté"
-//
-//        //creer un commande vide en base de donnée
-//        Client tempClient = clientManager.getClientById(1L);
-//        Commande commande = new Commande(tempClient);
-//        commandeManager.saveCommande(commande);
-//
-//        // Récupérer l'ID de la dernière commande enregisrtée en BDD
-//        Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
-//
-//        // placer en session
-//        model.addAttribute("idCommande", idLastCommande);
-//
-//
-//
-//        detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
-//
-//        return "redirect:/carte";
-//    }
-
-
-
-
-
-    @PostMapping("ajout-panier")
-    public String getAjoutPanier(Model model,DetailCommande detailCommande,@SessionAttribute Long idCommande) {
-
-         //todo: code pour ajouter produit au panier
-        //todo: flash message "produit ajouté"
-
-
-
-        // initialiser une commande qui est nulle
-        Client tempClient = clientManager.getClientById(1L);
-        Commande commande = null;
-
-        System.out.println(idCommande);
-
-        // if idCommande (en session) a un numéro , alors) :
-        if (idCommande != null) {
-
-            // récupérer la commande à partir de l'id Session
-             commande = commandeManager.getCommandeById(idCommande);
-        }
-
-
-        // si la commande n'est pas nulle
-        if (commande != null) {
-
-/* mettre l'id commande dans la session
-         model.addAttribute("idCommande",idCommande);
- */
-
-            // ajouter le détail commande à la commande
-            detailCommandeManager.saveDetailCommande(detailCommande,idCommande);
-
-        }
-
-        // Si l'id commande est nul, alors
-        if (idCommande == null) {
-
-            commande = new Commande(tempClient);
-            commandeManager.saveCommande(commande);
-
-            // Enregistrer la commande en BDD (la BDD va générer un id Commande)
-
-            // Récupérer l'ID de la dernière commande enregisrtée en BDD
-            Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
-
-            // placer en session
-            model.addAttribute("idCommande", idLastCommande);
-
-            // enregistrer enfin le détail commande dans la commance
-            detailCommandeManager.saveDetailCommande(detailCommande,idLastCommande);
-
-        }
-
-
-        return "redirect:/carte";
-    }
-
 
 
     @GetMapping("supprimer-produit/**")
@@ -264,15 +149,12 @@ System.out.println(detailsCommande.toString());
 
         System.out.println(client1.toString());
 
-        Client client2 = new Client(2L,"Jouannet","Lucille","alice.jouannet@gmail.com","123456","rue des lapins",49000L,"Angers");
+        Client client2 = new Client(2L, "Jouannet", "Lucille", "alice.jouannet@gmail.com", "123456", "rue des lapins", 49000L, "Angers");
 
         System.out.println(client2.toString());
 
         return "base.html";
     }
-
-
-
 
 
 }
