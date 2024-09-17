@@ -16,4 +16,5 @@ public interface IDAODetailCommande {
     public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande);
 
     public Boolean detectMatchByIdCommandeAndIdProduit(Long idCommande,Long idProduit);
+
 }
