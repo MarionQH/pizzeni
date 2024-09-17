@@ -83,21 +83,11 @@ public class PanierController {
             Long idLastCommande = commandeManager.getIdLastCommandeEnregistreeBDD();
             model.addAttribute("idCommande", idLastCommande);
             idCommande = idLastCommande;
+
         }
 
         // créer le use case où on a déjà ajouté ce détail commande au panier
-        // (?) récupérer la liste de détail commandes de la commande
-        // looper dessus et voir si il existe déjà ce detail commande
-        // si c'est le cas, incrémenter la quantité et repousser en BDD
-
-//        Commande commande = commandeManager.getCommandeById(idCommande);
-//        List<DetailCommande> detailsCommande = commande.getDetailsCommandes();
-//
-//        for (int i=0; i < detailsCommande.size()  ; i++) {
-//
-//            System.out.println(detailsCommande.get(i));
-//        }
-
+        //
 
 
         detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
