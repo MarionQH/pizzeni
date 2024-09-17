@@ -33,7 +33,7 @@ public class PanierController {
     IClientManager clientManager;
 
 
-      @GetMapping("panier")
+    @GetMapping("panier")
     public String getCreationCommande(Long id, Model model) {
 
         Commande commande = new Commande();
@@ -42,7 +42,6 @@ public class PanierController {
 
         model.addAttribute("commande", commande);
         model.addAttribute("clients", clients);
-
 
 
         return "creation-commande.html";
@@ -57,12 +56,10 @@ public class PanierController {
     }
 
 
-
     @PostMapping("ajout-panier")
-    public String getAjoutPanier(Model model,DetailCommande detailCommande,@SessionAttribute(name = "idCommande", required = false) Long idCommande) {
+    public String getAjoutPanier(Model model, DetailCommande detailCommande, @SessionAttribute(name = "idCommande", required = false) Long idCommande) {
 
 
-          // créer le use case où on a déjà ajouter ce détail commande au panier
 
         if (idCommande == null) {
 
@@ -74,6 +71,10 @@ public class PanierController {
             idCommande = idLastCommande;
         }
 
+        // créer le use case où on a déjà ajouté ce détail commande au panier
+        // (?) récupérer la liste de détail commandes de la commande
+        // looper dessus et voir si il existe déjà ce detail commande
+        // si c'est le cas, incrémenter la quantité et repousser en BDD
 
         detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
 
