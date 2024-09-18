@@ -41,6 +41,8 @@ public class PanierController {
         model.addAttribute("commande", commande);
         System.out.println(commande);
 
+        List<Client> clients = clientManager.getClients();
+        model.addAttribute("clients", clients);
 
 
         return "creation-commande.html";
