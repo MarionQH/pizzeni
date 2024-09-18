@@ -6,11 +6,11 @@
 <div layout:fragment="content">
 
   <div>
-    <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Ajouter un client </h1>
+    <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> Ajouter un utilisateur </h1>
   </div>
 
 
-  <form th:object="${client}" method="post" th:action="@{/instancier-un-client}" class="page-form">
+  <form th:object="${client}" method="post" th:action="@{/ajout-utilisateur}" class="page-form">
 
     <input th:field="*{id}" type="hidden">
 
@@ -37,6 +37,16 @@
     <div class=" uk-margin">
       <label for="ville">Ville:</label>
       <input th:field="*{ville}" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <label for="email">Adresse email:</label>
+      <input th:field="*{email}" type="email" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <label for="password"> Mot de passe:</label>
+      <input th:field="*{password}" type="password" class="uk-input"/>
     </div>
 
     <div class=" uk-margin">
