@@ -45,8 +45,6 @@ public class CommandeManager implements ICommandeManager {
         //Récupérer les details commande de la BDD depuis l'id detail commande
         commande.setDetailsCommandes(detailCommande.selectDetailsCommandeByIdCommande(id));
 
-        //Récupérer le client de la commande depuis l'id client dans la commande
-        commande.setClient(commande.getClient());
 
 //        // Récupérer les produits de chaque détail commande
 //        List<DetailCommande> detailsCommandes = commande.getDetailsCommandes();

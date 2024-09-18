@@ -47,31 +47,8 @@ public class DAOCommandeMySQL implements IDAOCommande {
             client.setCodePostal(rs.getLong("code_postal"));
             commande.setClient(client);
 
-            DetailCommande detailCommande = new DetailCommande();
-            detailCommande.setQuantite(rs.getInt("quantite"));
-
-            // Matcher les alias
-            Produit produit = new Produit();
-            produit.setId(rs.getLong("id_produit"));
-            produit.setNom(rs.getString("nom"));
-            produit.setDescription(rs.getString("description"));
-            produit.setPrix(rs.getLong("prix"));
-            produit.setImageUrl(rs.getString("image_url"));
-
-            TypeProduit typeProduit = new TypeProduit();
-            typeProduit.setId(rs.getLong("id_type_produit"));
-            typeProduit.setLibelle(rs.getString("libelle"));
-
-            produit.setTypeProduit(typeProduit);
-
-            detailCommande.setProduit(produit);
-
-            List <DetailCommande> detailsCommande = new ArrayList<DetailCommande>();
-
-            detailsCommande.add(detailCommande);
-            
-            commande.setDetailsCommandes(detailsCommande);
-
+            // Pour récupérer une liste de type Objet, on passe par le manager
+            // c'est le manager qui va faire appel à plusieurs DAO et rattacher les objets ensemble
 
             return commande;
         }
