@@ -51,19 +51,60 @@ public class PanierController {
     }
 
     @PostMapping("panier")
-    public String postCreationCommande(Commande commande, List<DetailCommande> detailsCommande) {
+    public String postCreationCommande(@SessionAttribute(name = "idCommande", required = true) Long idCommande, Commande commande, Model model)  {
 
-        //Update chaque ligne de detail commande
-        for (DetailCommande detailCommande : detailsCommande) {
+        /*
 
-            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
-        }
+        TRIGGER (action qui déclenche le PostMapping 'panier')
+        - Appui sur bouton commander
+        - Appui sur changement de quantité aussi ? (pour MAJ les prix en temps réél) // Plus tard
 
-        //gerer le changement d'état de la commande:
-        commande.setIdEtat(2L);
+        FONCTIONNALITES A APPELER
+        - Mettre à jour les details commande qui ont changé (qté)
+        - Mettre à jour le client
+        - Recalculer le prix total
+        - Mettre à jour le prix total
+        - Mettre à jour le mode de réception (livraison ou à emporter)
 
-        //update la commande avec la nouvelle heure de livraison
-        commandeManager.updateCommande(commande);
+        ET SI TOUS LES CHAMPS SONT REMPLIS
+        - Mettre à jour le statut -> doit devenir 2 (à préparer)
+        - Retirer l'id commande de la session
+
+         */
+
+        // - Mettre à jour les details commande qui ont changé (qté)
+
+//        @Override
+//        public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande) {
+//
+//            daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
+//
+//        }
+
+        model.getAttribute("commande");
+
+        List<DetailCommande> detailsCommande = commande.getDetailsCommandes();
+
+
+        detailCommandeManager.updateDetailCommande();
+
+
+
+
+
+
+
+//        //Update chaque ligne de detail commande
+//        for (DetailCommande detailCommande : detailsCommande) {
+//
+//            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
+//        }
+//
+//        //gerer le changement d'état de la commande:
+//        commande.setIdEtat(2L);
+//
+//        //update la commande avec la nouvelle heure de livraison
+//        commandeManager.updateCommande(commande);
 
         return "redirect:/panier";
     }
