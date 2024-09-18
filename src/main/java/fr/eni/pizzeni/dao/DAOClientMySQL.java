@@ -1,6 +1,7 @@
 package fr.eni.pizzeni.dao;
 
 import fr.eni.pizzeni.bo.Client;
+import fr.eni.pizzeni.bo.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -63,7 +64,7 @@ public class DAOClientMySQL implements IDAOClient {
     public void saveClient(Client client) {
 
         // 1. Insérer le client dans la table client
-        String sql = "INSERT INTO client (prenom,nom,rue,code_postal,ville) VALUES (:prenom,:nom,:rue,:code_postal,:ville)";
+        String sqlclient = "INSERT INTO client (prenom,nom,rue,code_postal,ville) VALUES (:prenom,:nom,:rue,:code_postal,:ville)";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("prenom", client.getPrenom());
         mapSqlParameterSource.addValue("nom", client.getNom());
@@ -72,9 +73,25 @@ public class DAOClientMySQL implements IDAOClient {
         mapSqlParameterSource.addValue("ville", client.getVille());
 
         // Exécuter la requête pour insérer le client
-        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+        namedParameterJdbcTemplate.update(sqlclient, mapSqlParameterSource);
 
-        return;
+        // 2. Insérer l'utilisateur dans la table utilisateur
+
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setNom(client.getNom());
+        utilisateur.setPrenom(client.getPrenom());
+        utilisateur.setEmail(client.getEmail());  // Il doit y avoir un email dans l'objet client ou un moyen de le récupérer
+        utilisateur.setPassword(client.getPassword());  // Il doit y avoir un password à définir
+
+        String sqlUtilisateur = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe) VALUES (:nom, :prenom, :email, :password)";
+        MapSqlParameterSource utilisateurParams = new MapSqlParameterSource();
+        utilisateurParams.addValue("nom", utilisateur.getNom());
+        utilisateurParams.addValue("prenom", utilisateur.getPrenom());
+        utilisateurParams.addValue("email", utilisateur.getEmail());
+        utilisateurParams.addValue("password", utilisateur.getPassword());
+
+        // Exécuter la requête pour insérer l'utilisateur
+        namedParameterJdbcTemplate.update(sqlUtilisateur, utilisateurParams);
 
     }
 }

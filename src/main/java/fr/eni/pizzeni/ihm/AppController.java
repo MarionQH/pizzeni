@@ -155,12 +155,6 @@ public class AppController {
         Client client = new Client();
         model.addAttribute("client", client);
 
-//        System.out.println(client1.toString());
-//
-//        Client client2 = new Client(2L, "Jouannet", "Lucille", "alice.jouannet@gmail.com", "123456", "rue des lapins", 49000L, "Angers");
-//
-//        System.out.println(client2.toString());
-
         return "ajout-utilisateur.html";
     }
 
@@ -172,22 +166,7 @@ public class AppController {
     }
 
 
-    @GetMapping("inscription")
-    public String getInscription(Model model) {
 
-        Utilisateur utilisateur = new Utilisateur();
-        model.addAttribute("utilisateur",utilisateur);
-
-        return "inscription-utilisateur.html";
-    }
-
-    @PostMapping("inscription")
-    public String postInscription(Utilisateur utilisateur) {
-
-        utilisateurManager.saveUtilisateur(utilisateur);
-
-        return "redirect:/accueil";
-    }
 
 }
 
