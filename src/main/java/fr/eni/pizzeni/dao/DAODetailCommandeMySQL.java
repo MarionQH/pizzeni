@@ -3,6 +3,7 @@ package fr.eni.pizzeni.dao;
 
 import fr.eni.pizzeni.bo.DetailCommande;
 import fr.eni.pizzeni.bo.Produit;
+import fr.eni.pizzeni.bo.TypeProduit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,8 +32,18 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
             detailCommande.setQuantite(rs.getInt("quantite"));
 
             Produit produit = new Produit();
-            produit.setId(rs.getLong("produit_id_produit"));
+            produit.setId(rs.getLong("id_produit"));
             produit.setNom(rs.getString("nom_produit"));
+            produit.setDescription(rs.getString("description"));
+            produit.setPrix(rs.getLong("prix"));
+            produit.setImageUrl(rs.getString("image_url"));
+
+            TypeProduit typeProduit = new TypeProduit();
+            typeProduit.setId(rs.getLong("id_type_produit"));
+            typeProduit.setLibelle(rs.getString("libelle"));
+
+            produit.setTypeProduit(typeProduit);
+
             detailCommande.setProduit(produit);
 
             return detailCommande;
