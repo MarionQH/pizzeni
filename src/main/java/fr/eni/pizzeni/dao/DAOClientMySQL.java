@@ -4,6 +4,7 @@ import fr.eni.pizzeni.bo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -59,6 +60,20 @@ public class DAOClientMySQL implements IDAOClient {
 
     @Override
     public void saveClient(Client client) {
+
+        // 1. Insérer le client dans la table client
+        String sql = "INSERT INTO client (prenom,nom,rue,code_postal,ville) VALUES (:prenom,:nom,:rue,:code_postal,:ville)";
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("prenom", client.getPrenom());
+        mapSqlParameterSource.addValue("nom", client.getNom());
+        mapSqlParameterSource.addValue("rue", client.getRue());
+        mapSqlParameterSource.addValue("code_postal", client.getCodePostal());
+        mapSqlParameterSource.addValue("ville", client.getVille());
+
+        // Exécuter la requête pour insérer le client
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+
+        return;
 
     }
 }

@@ -147,17 +147,25 @@ public class AppController {
 
 
     @GetMapping("instancier-un-client")
-    public String getInstancierUnClient() {
+    public String getInstancierUnClient(Model model) {
 
-        Client client1 = new Client();
+        Client client = new Client();
+        model.addAttribute("client", client);
 
-        System.out.println(client1.toString());
+//        System.out.println(client1.toString());
+//
+//        Client client2 = new Client(2L, "Jouannet", "Lucille", "alice.jouannet@gmail.com", "123456", "rue des lapins", 49000L, "Angers");
+//
+//        System.out.println(client2.toString());
 
-        Client client2 = new Client(2L, "Jouannet", "Lucille", "alice.jouannet@gmail.com", "123456", "rue des lapins", 49000L, "Angers");
+        return "ajout-client.html";
+    }
 
-        System.out.println(client2.toString());
+    @PostMapping("instancier-un-client")
+    public String postInstancierUnClient(Client client) {
 
-        return "base.html";
+        clientManager.saveClient(client);
+        return "redirect:/instancier-un-client";
     }
 
 
