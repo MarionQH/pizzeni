@@ -10,5 +10,6 @@ public interface IUtilisateurManager {
     public List<Utilisateur> getUtilisateurs();
 
     public Utilisateur getUtlisateurById(Long id);
-    public void saveClient(Client client);
+
+    public void saveUtilisateur(Utilisateur utilisateur);
 }
