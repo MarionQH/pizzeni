@@ -12,9 +12,22 @@
 
     <form th:object="${commande}" method="post" th:action="@{/panier}" class="page-form">
 
+<!--choix du client -->
+        <div class="uk-margin">
+            <select th:field="*{client}" class="uk-width-1-1">
+                <!--                * étoile fait réference à un objet présent dans la page  ce qui est présent dans le th:objet-->
+
+                <option th:each="client: ${clients}" th:value="${client.id}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
+                <!--                le $ faut référence au donnée du modèle-->
+            </select>
+        </div>
+
+
+        <h3>Mes articles:</h3>
+
 <!--        Partie details commande-->
 
-        <div th:each="detailCommande : *{detailsCommandes}">
+        <div th:each="detailCommande : *{detailsCommandes}" class="aligner-items">
 
 <!--            Quantité -->
 
@@ -33,64 +46,58 @@
 
             </select>
 
-<!--            nom de du produit -->
+        <!--nom de du produit -->
 
             <input name="detailsCommande" th:value="${detailCommande.produit.getNom()}">
 
 
 
-<!--            prix-->
+        <!--prix par produit -->
 
             <input name="detailsCommande" th:value="${detailCommande.produit.getPrix()}">
-
         </div>
 
-<!--           Partie commande -->
+        <p>------------------------------------------------------</p>
 
+        <!--Todo faire le calcul-->
+        <div class=" uk-margin">
+            <label for="prixTotal"> Prix total:</label>
+            <input th:field="*{prixTotal}" type="number" class="uk-input" label="prix"/>
+        </div>
+
+
+        <h3>Votre commande</h3>
+
+         <!--id de la commande -->
             <input th:field="*{id}" type="hidden">
 
-        <div class="uk-margin">
-            <select th:field="*{client}" class="uk-width-1-1">
-                <!--                * étoile fait réference à un objet présent dans la page  ce qui est présent dans le th:objet-->
-
-                <option th:each="client: ${clients}" th:value="${client.id}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
-                <!--                le $ faut référence au donnée du modèle-->
-            </select>
-        </div>
-
+         <!--choix date et heure de livraison -->
         <div class=" uk-margin">
             <label for="dateHeureLivraison">date et heure de livraison:</label>
             <input th:field="*{dateHeureLivraison}" class="uk-input" type="datetime-local" />
         </div>
 
 
+        <!--En livraison ou a emporter -->
         <div>
-
              <div>
-                 <p>livraison:</p>
-                 <label label for="livraison"> Oui</label>
+                 <label label for="livraison"> Livraison</label>
                  <input th:field="*{livraison}" type="radio"  value="true" checked />
              </div>
                 <div>
-                     <label for="livraison">Non </label>
+                     <label for="livraison">A emporter </label>
                     <input  th:field="*{livraison}" type="radio" value="false"  />
                 </div>
         </div>
 
-<!--       Todo faire le calcul-->
-        <div class=" uk-margin">
-            <label for="prixTotal"> Prix total:</label>
-            <input th:field="*{prixTotal}" type="number" class="uk-input" label="prix"/>
-        </div>
-
-<!--todo à définir dans le controller -->
+        <!--todo à définir dans le controller le passer en Hidden quand il s'ajoutera automatiquement dans le controller-->
         <div class=" uk-margin">
             <label for="idEtat"> Statut</label>
             <input th:field="*{idEtat}" type="number" class="uk-input" label="statut"/>
         </div>
 
         <div class=" uk-margin">
-            <input value="Enregistrer" type="Submit" class="uk-button uk-button-primary uk-width-1-1"/>
+            <input value="Commander" type="Submit" class="uk-button uk-button-primary uk-width-1-1"/>
         </div>
 
     </form>

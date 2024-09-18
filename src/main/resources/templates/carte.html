@@ -20,7 +20,7 @@
                     <div>
                         <a href="">
                             <img th:src="${detailCommande.produit.getImageUrl()}" class="img-produit">
-                        </a>
+                        </a> <br>
                     </div>
                     <div>
                         <h2 th:text="${detailCommande.produit.getNom()}" class="page-title"></h2>
@@ -36,11 +36,11 @@
                         <input name="quantite" th:value="${detailCommande.quantite}" type="hidden">
                     </div>
 
-                    <div>
+                    <div class ="aligner-items">
                         <div class=" uk-margin">
-                            <input type="Submit" class="uk-icon-button" title="ajouter au panier">
+                            <button type="Submit" class="uk-icon-button" title="ajouter au panier" style="background-color: transparent; border: none;">
                             <i class="fas fa-plus-circle"></i>
-                            </input>
+                            </button>
                         </div>
 
 
@@ -75,7 +75,7 @@
                     <div>
                         <a href="">
                             <img th:src="${detailCommande.produit.getImageUrl()}" class="img-produit">
-                        </a>
+                        </a> <br>
                     </div>
                     <div>
                         <h2 th:text="${detailCommande.produit.getNom()}" class="page-title"></h2>
@@ -91,11 +91,11 @@
                         <input name="quantite" th:value="${detailCommande.quantite}" type="hidden">
                     </div>
 
-                    <div>
+                    <div class ="aligner-items">
                         <div class=" uk-margin">
-                            <input type="Submit" class="uk-icon-button" title="ajouter au panier">
+                            <button type="Submit" class="uk-icon-button" title="ajouter au panier"style="background-color: transparent; border: none;">
                             <i class="fas fa-plus-circle"></i>
-                            </input>
+                            </button>
                         </div>
 
 
@@ -131,7 +131,7 @@
                     <div>
                         <a href="">
                             <img th:src="${detailCommande.produit.getImageUrl()}" class="img-produit">
-                        </a>
+                        </a><br>
                     </div>
                     <div>
                         <h2 th:text="${detailCommande.produit.getNom()}" class="page-title"></h2>
@@ -143,15 +143,15 @@
 
 
                         <!--                        <input th:field="${detailCommande.produit.getId()}" type="hidden"/>-->
-                        <input name="produit" th:value="${detailCommande.produit.getId()}">
+                        <input name="produit" th:value="${detailCommande.produit.getId()}" type="hidden">
                         <input name="quantite" th:value="${detailCommande.quantite}" type="hidden">
                     </div>
 
-                    <div>
+                    <div class ="aligner-items">
                         <div class=" uk-margin">
-                            <input type="Submit" class="uk-icon-button" title="ajouter au panier">
+                            <button type="Submit" class="uk-icon-button" title="ajouter au panier" style="background-color: transparent; border: none;">
                             <i class="fas fa-plus-circle"></i>
-                            </input>
+                            </button>
                         </div>
 
 

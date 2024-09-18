@@ -6,5 +6,17 @@
 <div layout:fragment="content">
 
 
+    <div th:each="Commande : ${commandes}" class="page-form">
+
+        </div>
+        <p th:text="'Date et heure de livraison: '+ ${commande.dateHeureLivraison}"></p>
+        <p th:text="'Livraison: '+ ${commande.livraison}"></p>
+        <p th:text="'Prix total:' + ${commande.prixTotal}"></p>
+        <p th:text="'Payé:' + ${commande.estPaye}"></p>
+        <p th:text="'Etat:' + ${commande.idEtat}"></p>
+        </div>
+
+    </div>
+
 
 </div>

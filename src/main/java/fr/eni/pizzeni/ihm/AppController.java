@@ -126,7 +126,11 @@ public class AppController {
     }
 
     @GetMapping("liste-commandes")
-    public String getListCommandes() {
+    public String getListCommandes(Model model) {
+
+        List<Commande> commandes = commandeManager.getCommandes();
+        model.addAttribute("commandes", commandes);
+
         return "commandes.html";
     }
 

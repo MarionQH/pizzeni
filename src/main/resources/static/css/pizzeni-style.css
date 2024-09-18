@@ -31,10 +31,21 @@
     background-color: white;
     margin-bottom: 1.5em;
     padding: 1.5em;
+
+}
+
+.aligner-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
 }
 
 .img-produit{
-    width: 40%;
+    width: 70%;
+    margin: auto;
+    display: block
+
 }
 
 .img-accueil{
