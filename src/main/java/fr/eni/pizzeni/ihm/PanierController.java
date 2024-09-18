@@ -38,12 +38,12 @@ public class PanierController {
     public String getCreationCommande(@SessionAttribute(name = "idCommande", required = false) Long idCommande, Model model)  {
 
         Commande commande = commandeManager.getCommandeById(idCommande);
-
+        model.addAttribute("commande", commande);
         System.out.println(commande);
 
 
 
-        return "carte.html";
+        return "creation-commande.html";
 
 
     }
