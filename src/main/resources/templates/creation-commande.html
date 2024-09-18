@@ -34,7 +34,7 @@
             <select name="quantite "  class="uk-width-1-1">
 
                 <option th:selected="${detailCommande.quantite ==1}" value="1"  text="1"></option>
-                <option value="2"  text="2"></option>
+                <option th:selected="${detailCommande.quantite ==2}" value="2"  text="2"></option>
                 <option value="3"  text="3"></option>
                 <option value="4"  text="4"></option>
                 <option value="5"  text="5"></option>
