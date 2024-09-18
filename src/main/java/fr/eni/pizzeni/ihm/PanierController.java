@@ -38,12 +38,17 @@ public class PanierController {
     public String getCreationCommande(@SessionAttribute(name = "idCommande", required = false) Long idCommande, Model model)  {
 
         Commande commande = commandeManager.getCommandeById(idCommande);
-        List<Client> clients = clientManager.getClients();
+//        List<Client> clients = clientManager.getClients();
 
-        model.addAttribute("commande", commande);
-        model.addAttribute("clients", clients);
+        System.out.println(commande);
 
-        return "creation-commande.html";
+//
+//        model.addAttribute("commande", commande);
+//        model.addAttribute("clients", clients);
+
+        return "carte.html";
+
+//        return "creation-commande.html";
     }
 
     @PostMapping("panier")
