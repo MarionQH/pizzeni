@@ -43,7 +43,7 @@ public class PanierController {
 
 
 
-        return "carte.html";
+        return "creation-commande.html";
 
 
     }
