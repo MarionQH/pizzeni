@@ -46,15 +46,6 @@ public class CommandeManager implements ICommandeManager {
         commande.setDetailsCommandes(detailCommande.selectDetailsCommandeByIdCommande(id));
 
 
-//        // Récupérer les produits de chaque détail commande
-//        List<DetailCommande> detailsCommandes = commande.getDetailsCommandes();
-//
-//        for (DetailCommande detailCommande : detailsCommandes) {
-//
-//        Produit produit = detailCommande.getProduit();
-//
-//        detailCommande.setProduit(produit);
-
         return commande;
 
         }
