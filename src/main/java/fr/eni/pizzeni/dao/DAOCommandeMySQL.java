@@ -1,7 +1,6 @@
 package fr.eni.pizzeni.dao;
 
-import fr.eni.pizzeni.bo.Client;
-import fr.eni.pizzeni.bo.Commande;
+import fr.eni.pizzeni.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,12 +29,14 @@ public class DAOCommandeMySQL implements IDAOCommande {
         public Commande mapRow(ResultSet rs, int rowNum) throws SQLException {
             Commande commande = new Commande();
             commande.setId(rs.getLong("id_commande"));
+
             // getTimesTamp
-            commande.setDateHeureLivraison(rs.getObject("date_heure_livraison", LocalDateTime.class));
+            commande.setDateHeureLivraison(rs.getTimestamp("date_heure_livraison").toLocalDateTime());
             commande.setLivraison(rs.getBoolean("livraison"));
+            commande.setIdEtat(rs.getLong("ETAT_id_etat"));
             commande.setPrixTotal(rs.getLong("prix_total"));
             commande.setEstPaye(rs.getBoolean("est_paye"));
-            commande.setIdEtat(rs.getLong("ETAT_id_etat"));
+
 
             Client client = new Client();
             client.setId(rs.getLong("id_client"));
@@ -42,7 +44,34 @@ public class DAOCommandeMySQL implements IDAOCommande {
             client.setPrenom(rs.getString("prenom"));
             client.setVille(rs.getString("ville"));
             client.setRue(rs.getString("rue"));
+            client.setCodePostal(rs.getLong("code_postal"));
             commande.setClient(client);
+
+            DetailCommande detailCommande = new DetailCommande();
+            detailCommande.setQuantite(rs.getInt("quantite"));
+
+            // Matcher les alias
+            Produit produit = new Produit();
+            produit.setId(rs.getLong("id_produit"));
+            produit.setNom(rs.getString("nom"));
+            produit.setDescription(rs.getString("description"));
+            produit.setPrix(rs.getLong("prix"));
+            produit.setImageUrl(rs.getString("image_url"));
+
+            TypeProduit typeProduit = new TypeProduit();
+            typeProduit.setId(rs.getLong("id_type_produit"));
+            typeProduit.setLibelle(rs.getString("libelle"));
+
+            produit.setTypeProduit(typeProduit);
+
+            detailCommande.setProduit(produit);
+
+            List <DetailCommande> detailsCommande = new ArrayList<DetailCommande>();
+
+            detailsCommande.add(detailCommande);
+            
+            commande.setDetailsCommandes(detailsCommande);
+
 
             return commande;
         }

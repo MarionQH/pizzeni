@@ -54,14 +54,42 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
     @Override
     public List<DetailCommande> selectDetailsCommandes() {
 
-        String sql = "select * from detail_commande";
+        String sql = "SELECT dc.quantite, \n" +
+                "dc.commande_id_commande,\n" +
+                "p.id_produit, \n" +
+                "p.nom , \n" +
+                "p.description, \n" +
+                "p.prix, \n" +
+                "p.image_url, \n" +
+                "tp.id_type_produit, \n" +
+                "tp.libelle \n" +
+                "FROM detail_commande dc \n" +
+                "JOIN produit p \n" +
+                "ON dc.produit_id_produit = p.id_produit\n" +
+                "JOIN type_produit tp\n" +
+                "ON p.type_produit_id_type_produit = tp.id_type_produit";
+
+
         return jdbcTemplate.query(sql, DETAIL_COMMANDE_ROW_MAPPER);
     }
 
     @Override
     public List<DetailCommande> selectDetailsCommandeByIdCommande(Long idCommande) {
-        String sql = "SELECT dc.quantite, dc.commande_id_commande, dc.produit_id_produit, p.nom , p.description, p.prix, p.image_url, tp.id_type_produit, tp.libelle FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
-
+        String sql = "SELECT dc.quantite, \n" +
+                "dc.commande_id_commande,\n" +
+                "p.id_produit, \n" +
+                "p.nom , \n" +
+                "p.description, \n" +
+                "p.prix, \n" +
+                "p.image_url, \n" +
+                "tp.id_type_produit, \n" +
+                "tp.libelle \n" +
+                "FROM detail_commande dc \n" +
+                "JOIN produit p \n" +
+                "ON dc.produit_id_produit = p.id_produit\n" +
+                "JOIN type_produit tp\n" +
+                "ON p.type_produit_id_type_produit = tp.id_type_produit" +
+                "WHERE dc.commande_id_commande = :idCommande";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", idCommande);
