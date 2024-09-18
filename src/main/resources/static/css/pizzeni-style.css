@@ -37,8 +37,19 @@
 .aligner-items{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: baseline;
+    justify-content: space-between;
+}
+
+.prix {
+    display: flex;
+    justify-content: flex-end;
+}
+
+hr {
+   background-color: #FF6161;
+    height: 2px;
+    border: none;
 }
 
 .img-produit{

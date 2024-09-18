@@ -27,46 +27,41 @@
 
 <!--        Partie details commande-->
 
-        <div th:each="detailCommande : *{detailsCommandes}" class="aligner-items">
+        <div th:each="detailCommande, itemStat : *{detailsCommandes}">
+            <div class="aligner-items">
 
 <!--            Quantité -->
 
-            <select name="quantite "  class="uk-width-1-1">
-
-                <option th:selected="${detailCommande.quantite ==1}" value="1"  text="1"></option>
-                <option th:selected="${detailCommande.quantite ==2}" value="2"  text="2"></option>
-                <option value="3"  text="3"></option>
-                <option value="4"  text="4"></option>
-                <option value="5"  text="5"></option>
-                <option value="6"  text="6"></option>
-                <option value="7"  text="7"></option>
-                <option value="8"  text="8"></option>
-                <option value="9"  text="9"></option>
-                <option value="10" text="10"></option>
-
-            </select>
+                <select th:name="|detailsCommandes[${itemStat.index}].quantite|" required>
+                    <!-- Génération des options de 1 à 10 -->
+                    <option th:each="i : ${#numbers.sequence(1, 10)}"
+                            th:value="${i}"
+                            th:text="${i}"
+                            th:selected="${i == detailCommande.getQuantite()}">
+                    </option>
+                </select>
 
         <!--nom de du produit -->
 
-            <input name="detailsCommande" th:value="${detailCommande.produit.getNom()}">
+            <p name="detailsCommande" th:text="${detailCommande.produit.getNom()}"></p>
 
 
 
         <!--prix par produit -->
 
-            <input name="detailsCommande" th:value="${detailCommande.produit.getPrix()}">
+            <p name="detailsCommande" th:text="${detailCommande.produit.getPrix()} + ' €'"></p>
+            </div>
         </div>
 
-        <p>------------------------------------------------------</p>
+        <hr>
 
         <!--Todo faire le calcul-->
-        <div class=" uk-margin">
-            <label for="prixTotal"> Prix total:</label>
-            <input th:field="*{prixTotal}" type="number" class="uk-input" label="prix"/>
+        <div class=" uk-margin prix">
+            <p th:text="*{prixTotal} + ' €'"> </p>
         </div>
 
 
-        <h3>Votre commande</h3>
+        <h3>Ma commande:</h3>
 
          <!--id de la commande -->
             <input th:field="*{id}" type="hidden">
@@ -92,8 +87,8 @@
 
         <!--todo à définir dans le controller le passer en Hidden quand il s'ajoutera automatiquement dans le controller-->
         <div class=" uk-margin">
-            <label for="idEtat"> Statut</label>
-            <input th:field="*{idEtat}" type="number" class="uk-input" label="statut"/>
+<!--            <label for="idEtat"> Statut</label>-->
+            <input th:field="*{idEtat}" class="uk-input" label="statut" type="hidden"/>
         </div>
 
         <div class=" uk-margin">
