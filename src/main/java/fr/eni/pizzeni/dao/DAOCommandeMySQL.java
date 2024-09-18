@@ -62,20 +62,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
 
     @Override
     public Commande selectCommandeById(Long id) {
-        String sql = "SELECT c.id_commande," +
-                "                c.date_heure_livraison," +
-                "                c.livraison," +
-                "                c.ETAT_id_etat," +
-                "                c.prix_total," +
-                "                c.est_paye," +
-                "                cl.id_client," +
-                "                cl.prenom," +
-                "                cl.nom," +
-                "                cl.ville," +
-                "                cl.rue," +
-                "                cl.code_postal" +
-                "                FROM commande c " +
-                "                JOIN client cl ON c.CLIENT_id_client = cl.id_client WHERE id_commande = :idCommande";
+        String sql = "SELECT c.id_commande, c.date_heure_livraison,c.livraison, c.ETAT_id_etat, c.prix_total, c.est_paye, cl.id_client, cl.prenom,cl.nom, cl.ville, cl.rue, cl.code_postal FROM commande c JOIN client cl ON c.CLIENT_id_client = cl.id_client WHERE id_commande = :idCommande";
 
 
         MapSqlParameterSource map = new MapSqlParameterSource();
