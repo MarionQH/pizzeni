@@ -52,19 +52,6 @@ public class CommandeManager implements ICommandeManager {
 
 
 
-
-
-
-
-        //Todo récupérer les produits dans les détails produits
-//        for (int i = 0 ; i < detailsCommandes.size() ; i++) {
-//
-//          detailsCommandes(i).setProduit(daoProduit.selectProduitById(detailsCommandes(i).getId()));
-//
-//        }
-
-
-
     @Override
     public void saveCommande(Commande commande) {
 
