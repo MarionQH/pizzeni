@@ -34,6 +34,9 @@ public class AppController {
     @Autowired
     IClientManager clientManager;
 
+    @Autowired
+    IUtilisateurManager utilisateurManager;
+
 
     @GetMapping("")
     public String getBase() {
@@ -146,7 +149,7 @@ public class AppController {
     }
 
 
-    @GetMapping("instancier-un-client")
+    @GetMapping("ajout-utilisateur")
     public String getInstancierUnClient(Model model) {
 
         Client client = new Client();
@@ -158,16 +161,33 @@ public class AppController {
 //
 //        System.out.println(client2.toString());
 
-        return "ajout-client.html";
+        return "ajout-utilisateur.html";
     }
 
-    @PostMapping("instancier-un-client")
+    @PostMapping("ajout-utilisateur")
     public String postInstancierUnClient(Client client) {
 
         clientManager.saveClient(client);
-        return "redirect:/instancier-un-client";
+        return "redirect:/ajout-utilisateur";
     }
 
+
+    @GetMapping("inscription")
+    public String getInscription(Model model) {
+
+        Utilisateur utilisateur = new Utilisateur();
+        model.addAttribute("utilisateur",utilisateur);
+
+        return "inscription-utilisateur.html";
+    }
+
+    @PostMapping("inscription")
+    public String postInscription(Utilisateur utilisateur) {
+
+        utilisateurManager.saveUtilisateur(utilisateur);
+
+        return "redirect:/accueil";
+    }
 
 }
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/base}">
+
+<div layout:fragment="content">
+
+  <div>
+    <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title"> S'inscrire </h1>
+  </div>
+
+
+  <form th:object="${utilisateur}" method="post" th:action="@{/inscription}" class="page-form">
+
+    <input th:field="*{id}" type="hidden">
+
+    <div class=" uk-margin">
+      <label for="nom">Nom:</label>
+      <input th:field="*{nom}" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <label for="prenom">Prenom:</label>
+      <input th:field="*{prenom}" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <label for="email">Adresse email:</label>
+      <input th:field="*{email}" type="email" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <label for="password"> Mot de passe:</label>
+      <input th:field="*{password}" type="password" class="uk-input"/>
+    </div>
+
+    <div class=" uk-margin">
+      <input value="Enregistrer" type="Submit" class="uk-button uk-button-primary uk-width-1-1"/>
+    </div>
+
+  </form>
+
+</div>
