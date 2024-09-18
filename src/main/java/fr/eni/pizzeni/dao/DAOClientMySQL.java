@@ -33,7 +33,7 @@ public class DAOClientMySQL implements IDAOClient {
             client.setRue(rs.getString("rue"));
             client.setCodePostal(rs.getLong("code_postal"));
             client.setVille(rs.getString("ville"));
-            
+
 
             return client;
         }
