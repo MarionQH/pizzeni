@@ -3,11 +3,17 @@ package fr.eni.pizzeni.ihm;
 
 import fr.eni.pizzeni.bll.*;
 import fr.eni.pizzeni.bo.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +22,7 @@ import java.util.List;
 @Controller
 public class PanierController {
 
+    private static final Logger log = LogManager.getLogger(PanierController.class);
     private final ProduitManager produitManager;
 
     @Autowired
@@ -46,15 +53,12 @@ public class PanierController {
 
 
         return "creation-commande.html";
-
-
     }
 
     @PostMapping("panier")
     public String postCreationCommande(@SessionAttribute(name = "idCommande", required = true) Long idCommande, Commande commande, Model model)  {
 
         /*
-
         TRIGGER (action qui déclenche le PostMapping 'panier')
         - Appui sur bouton commander
         - Appui sur changement de quantité aussi ? (pour MAJ les prix en temps réél) // Plus tard
@@ -73,47 +77,33 @@ public class PanierController {
          */
 
         // - Mettre à jour les details commande qui ont changé (qté)
-
-//        @Override
-//        public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande) {
-//
-//            daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
-//
-//        }
-
         model.getAttribute("commande");
 
         List<DetailCommande> detailsCommande = commande.getDetailsCommandes();
 
+        //detailCommandeManager.updateDetailCommande();
 
-        detailCommandeManager.updateDetailCommande();
+        //Update chaque ligne de detail commande
+        for (DetailCommande detailCommande : detailsCommande) {
 
+            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
+        }
 
+        //gerer le changement d'état de la commande:
+        commande.setIdEtat(2L);
 
-
-
-
-
-//        //Update chaque ligne de detail commande
-//        for (DetailCommande detailCommande : detailsCommande) {
-//
-//            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
-//        }
-//
-//        //gerer le changement d'état de la commande:
-//        commande.setIdEtat(2L);
-//
-//        //update la commande avec la nouvelle heure de livraison
-//        commandeManager.updateCommande(commande);
+        //update la commande avec la nouvelle heure de livraison
+        commandeManager.updateCommande(commande);
 
         return "redirect:/panier";
     }
 
 
         @GetMapping("/remove-id-commande-session")
-        public String removeIdCommandeFromSession(HttpSession session) {
-            // Remove the 'idCommande' attribute from the session
-            session.removeAttribute("idCommande");
+        public String removeIdCommandeFromSession(SessionStatus status) {
+
+            //nettoyer la session (se déconnecter)
+            status.setComplete();
 
             // Optionally, redirect to another page or return a view
             return "redirect:/carte";  // Redirects to the homepage, or change as needed

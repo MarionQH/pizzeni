@@ -1,7 +1,10 @@
 package fr.eni.pizzeni.dao;
 
 import fr.eni.pizzeni.bo.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -17,6 +20,7 @@ import java.util.List;
 @Component
 public class DAOCommandeMySQL implements IDAOCommande {
 
+    private static final Logger log = LogManager.getLogger(DAOCommandeMySQL.class);
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -70,12 +74,17 @@ public class DAOCommandeMySQL implements IDAOCommande {
     public Commande selectCommandeById(Long id) {
         String sql = "SELECT c.id_commande, c.date_heure_livraison,c.livraison, c.ETAT_id_etat, c.prix_total, c.est_paye, cl.id_client, cl.prenom,cl.nom, cl.ville, cl.rue, cl.code_postal FROM commande c JOIN client cl ON c.CLIENT_id_client = cl.id_client WHERE id_commande = :idCommande";
 
-
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", id);
 
-
-        return namedParameterJdbcTemplate.queryForObject(sql, map, COMMANDE_ROW_MAPPER);
+        Commande commande = null;
+        // voir la classe client pour reprendre le même fonctionnement
+        try {
+            commande = namedParameterJdbcTemplate.queryForObject(sql, map, COMMANDE_ROW_MAPPER);
+        } catch (EmptyResultDataAccessException ex){
+            log.error(ex.getMessage());
+        }
+        return commande;
     }
 
     @Override
