@@ -51,12 +51,12 @@ public class DAOProduitMySQL implements IDAOProduit {
 
     @Override
     public List<Produit> selectProduits() {
-        return jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit as id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = tp.id_type_produit", PRODUIT_ROW_MAPPER);
+        return jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = tp.id_type_produit", PRODUIT_ROW_MAPPER);
     }
 
     @Override
     public Produit selectProduitById(Long id) {
-        List<Produit> produits = jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit as id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = tp.id_type_produit WHERE p.id_produit=?", PRODUIT_ROW_MAPPER, id);
+        List<Produit> produits = jdbcTemplate.query("SELECT p.id_produit, p.nom, p.description, p.prix, p.image_url, tp.id_type_produit, tp.libelle FROM produit p JOIN type_produit tp ON p.type_produit_id_type_produit = tp.id_type_produit WHERE p.id_produit=?", PRODUIT_ROW_MAPPER, id);
         if (produits.size() == 0) {
             return null;
         }
@@ -105,27 +105,6 @@ public class DAOProduitMySQL implements IDAOProduit {
 
                 namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
             }
-
-
-
-
-
-//            String sql = "UPDATE produit " +
-//                    "SET nom = :nomProduit, " +
-//                    "description = :descriptionProduit, " +
-//                    "prix = :prixProduit, " +
-//                    "image_url = :urlProduit, " +
-//                    "TYPE_PRODUIT_id_type_produit = :typeProduit " +
-//                    "WHERE id_produit = id";
-//
-//            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-//            mapSqlParameterSource.addValue("nomProduit", produit.getNom());
-//            mapSqlParameterSource.addValue("descriptionProduit", produit.getDescription());
-//            mapSqlParameterSource.addValue("prixProduit", produit.getPrix());
-//            mapSqlParameterSource.addValue("urlProduit", produit.getImageUrl());
-//            mapSqlParameterSource.addValue("typeProduit", produit.getTypeProduit().getId());
-//
-//            namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
 
         }
     }

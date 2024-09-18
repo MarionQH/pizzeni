@@ -31,9 +31,10 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
             DetailCommande detailCommande = new DetailCommande();
             detailCommande.setQuantite(rs.getInt("quantite"));
 
+            // Matcher les alias
             Produit produit = new Produit();
             produit.setId(rs.getLong("id_produit"));
-            produit.setNom(rs.getString("nom_produit"));
+            produit.setNom(rs.getString("nom"));
             produit.setDescription(rs.getString("description"));
             produit.setPrix(rs.getLong("prix"));
             produit.setImageUrl(rs.getString("image_url"));
@@ -59,7 +60,8 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
 
     @Override
     public List<DetailCommande> selectDetailsCommandeByIdCommande(Long idCommande) {
-        String sql = "SELECT dc.quantite, dc.commande_id_commande as id_commande, dc.produit_id_produit as id_produit,p.nom as nom_produit, p.prix as prix_produit FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
+        String sql = "SELECT dc.quantite, dc.commande_id_commande, dc.produit_id_produit, p.nom , p.description, p.prix, p.image_url, tp.id_type_produit, tp.libelle FROM detail_commande dc JOIN commande c ON dc.commande_id_commande = c.id_commande JOIN produit p ON dc.produit_id_produit = p.id_produit WHERE c.id_commande = :idCommande";
+
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idCommande", idCommande);
