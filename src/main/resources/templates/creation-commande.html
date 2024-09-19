@@ -74,6 +74,8 @@
         <!--Todo faire le calcul-->
         <div class=" uk-margin prix">
             <p th:text="*{prixTotal} + ' €'"> </p>
+            <!--prix de la commande -->
+            <input th:field="*{prixTotal}" type="hidden">
         </div>
 
 
