@@ -18,6 +18,8 @@ public class AuthController {
         return "redirect:/login";
    }
 
+
+
    @GetMapping ("logout")
         public String getLogout() {
             return "connexion.html";
