@@ -125,9 +125,10 @@ public class DAOCommandeMySQL implements IDAOCommande {
     public void updateCommande(Commande commande) {
 
         //PS Return dans un void retourne pas de valeur mais stop le code
-           String sql = "UPDATE commande SET date_heure_livraison = :dateHeureLivraison, CLIENT_id_client  = :id_client, prix_total = :prix_total,ETAT_id_etat = :idEtat WHERE id_commande = :id";
+           String sql = "UPDATE commande SET livraison = :livraison, date_heure_livraison = :dateHeureLivraison, CLIENT_id_client  = :id_client, prix_total = :prix_total,ETAT_id_etat = :idEtat WHERE id_commande = :id";
 MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
 mapSqlParameterSource.addValue("id", commande.getId());
+mapSqlParameterSource.addValue("livraison",commande.isLivraison());
 mapSqlParameterSource.addValue("dateHeureLivraison", commande.getDateHeureLivraison());
 mapSqlParameterSource.addValue("id_client",commande.getClient().getId());
 mapSqlParameterSource.addValue("prix_total",commande.getPrixTotal());
