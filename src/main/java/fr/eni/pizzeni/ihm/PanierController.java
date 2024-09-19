@@ -62,33 +62,29 @@ public class PanierController {
     }
 
     @PostMapping("panier")
-    public String postCreationCommande(Commande commande)  {
+    public String postCreationCommande(Commande commande,SessionStatus status,HttpSession session)  {
 
-        /*
 
-        TRIGGER (action qui déclenche le PostMapping 'panier')
-        - Appui sur bouton commander
-        - Appui sur changement de quantité aussi ? (pour MAJ les prix en temps réél) // Plus tard
+//
+//        TRIGGER (action qui déclenche le PostMapping 'panier')
+//        - Appui sur bouton commander
+//        - Appui sur changement de quantité aussi ? (pour MAJ les prix en temps réél) // Plus tard
+//
+//        FONCTIONNALITES A APPELER
+//        - Mettre à jour les details commande qui ont changé (qté)
+//        - Mettre à jour le client
+//        - Recalculer le prix total
+//        - Mettre à jour le prix total
+//        - Mettre à jour le mode de réception (livraison ou à emporter)
 
-        FONCTIONNALITES A APPELER
-        - Mettre à jour les details commande qui ont changé (qté)
-        - Mettre à jour le client
-        - Recalculer le prix total
-        - Mettre à jour le prix total
-        - Mettre à jour le mode de réception (livraison ou à emporter)
 
-        ET SI TOUS LES CHAMPS SONT REMPLIS
-        - Mettre à jour le statut -> doit devenir 2 (à préparer)
-        - Retirer l'id commande de la session
 
-         */
+        //Mettre à jour le prix total
+        commande.setPrixTotal(commandeManager.calculPrixTotal(commande));
 
-     // - Mettre à jour le prix total
-     // - Mettre à jour le statut -> doit devenir 2 (à préparer)
-     // - Retirer l'id commande de la session
 
-//        Commande commande = commandeManager.getCommandeById(idCommande);
-
+        //gerer le changement d'état de la commande:
+        commande.setIdEtat(2L);
         commandeManager.updateCommande(commande);
 
         List<DetailCommande> listeDetailsCommande = commande.getDetailsCommandes();
@@ -105,19 +101,14 @@ public class PanierController {
            System.out.println(detailCommande);
         }
 
+        //Retirer l'id commande de la session
+        //fonctionne pas ??
+        //session.removeAttribute("idCommande");
 
-
-
-
-
-
-//
-//        //gerer le changement d'état de la commande:
-//        commande.setIdEtat(2L);
-//
-//
-
-        return "redirect:/panier";
+        //nettoyer toute la session
+        status.setComplete();
+        
+        return "redirect:/carte";
     }
 
 
