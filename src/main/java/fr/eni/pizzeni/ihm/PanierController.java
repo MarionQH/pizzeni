@@ -62,7 +62,7 @@ public class PanierController {
     }
 
     @PostMapping("panier")
-    public String postCreationCommande(@SessionAttribute(name = "idCommande", required = true) Long idCommande, Commande commande, Model model)  {
+    public String postCreationCommande(Commande commande)  {
 
         /*
 
@@ -87,6 +87,9 @@ public class PanierController {
      // - Mettre à jour le mode de réception (livraison ou à emporter)
      // - Mettre à jour le client (via son id)
      // - Mettre à jour le statut -> doit devenir 2 (à préparer)
+
+//        Commande commande = commandeManager.getCommandeById(idCommande);
+
         commandeManager.updateCommande(commande);
 
         List<DetailCommande> listeDetailsCommande = commande.getDetailsCommandes();
@@ -95,13 +98,16 @@ public class PanierController {
 
            DetailCommande detailCommande = listeDetailsCommande.get(i);
            Long idProduit = detailCommande.getProduit().getId();
+           int quantite = detailCommande.getQuantite();
+           Long idCommande = commande.getId();
 
+           detailCommandeManager.updateDetailCommande(quantite, idProduit, idCommande);
 
-           detailCommandeManager.updateDetailCommande(detailCommande, idProduit, idCommande);
+           System.out.println(detailCommande);
         }
 
 
-             
+
 
 
 

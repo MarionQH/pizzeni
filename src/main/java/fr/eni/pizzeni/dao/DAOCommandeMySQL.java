@@ -133,6 +133,7 @@ mapSqlParameterSource.addValue("id_client",commande.getClient().getId());
 mapSqlParameterSource.addValue("prix_total",commande.getPrixTotal());
 mapSqlParameterSource.addValue("idEtat",commande.getIdEtat());
 
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
     }
 
 

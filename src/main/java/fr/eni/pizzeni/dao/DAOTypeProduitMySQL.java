@@ -67,4 +67,7 @@ public class DAOTypeProduitMySQL implements IDAOTypeProduit{
 
         return namedParameterJdbcTemplate.queryForObject(sql, map, TYPE_PRODUIT_ROW_MAPPER);
     }
+
+
+
 }

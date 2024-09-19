@@ -113,17 +113,18 @@ public class DAODetailCommandeMySQL implements IDAODetailCommande{
     }
 
     @Override
-    public void updateDetailCommande(DetailCommande detailCommande, Long idProduit, Long idCommande) {
+    public void updateDetailCommande(int quantite, Long idProduit, Long idCommande) {
 
         //TODO à terminer (ajouter l'updade en fonction de l'ID commande
 
         String sql = "UPDATE detail_commande SET quantite = :quantite WHERE produit_id_produit = :idProduit  AND commande_id_commande = :idCommande";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("idProduit",idProduit);
-        mapSqlParameterSource.addValue("quantite",detailCommande.getQuantite());
+        mapSqlParameterSource.addValue("quantite",quantite);
         mapSqlParameterSource.addValue("idCommande",idCommande);
 
 
+        namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
     }
 
     @Override

@@ -9,4 +9,5 @@ public interface IDAOTypeProduit {
     List<TypeProduit> findAll();
     TypeProduit findById(Long id);
 
+
 }

@@ -34,9 +34,9 @@ public class DetailCommandeManager implements IDetailCommandeManager{
     }
 
     @Override
-    public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande) {
+    public void updateDetailCommande(int quantite,Long idProduit,Long idCommande) {
 
-        daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
+        daodetailCommande.updateDetailCommande(quantite,idProduit,idCommande);
 
     }
 
