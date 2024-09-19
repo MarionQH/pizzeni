@@ -51,6 +51,11 @@
                 <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.imageUrl|" th:value="${detailCommande.produit.imageUrl}">
                 <!--<input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit|" th:value="${detailCommande.produit.typeProduit}">-->
 
+<!--                Idem pour les infos du type produit-->
+
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.id|" th:value="${detailCommande.produit.typeProduit.id}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.libelle|" th:value="${detailCommande.produit.typeProduit.libelle}">
+
 
         <!--nom de du produit -->
 
