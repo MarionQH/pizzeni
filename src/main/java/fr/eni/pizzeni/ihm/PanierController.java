@@ -120,7 +120,7 @@ public class PanierController {
         return "redirect:/panier";
     }
 
-    
+
 
     @PostMapping("ajout-panier")
     public String getAjoutPanier(Model model, DetailCommande detailCommande, @SessionAttribute(name = "idCommande", required = false) Long idCommande) {
