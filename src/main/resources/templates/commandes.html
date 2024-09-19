@@ -19,9 +19,19 @@
             ></p>
             <p th:text="'A ' + ${commande.dateHeureLivraison.toLocalTime()}"
             ></p>
-            <p th:text="'Livraison: '+ ${commande.livraison}"></p>
-            <p th:text="'Prix total: ' + ${commande.prixTotal} + '€'"></p>
-
+            <div>
+                <th:block th:switch="${commande.livraison}">
+                    <th:block th:case="false">
+                        A récupérer sur place
+                    </th:block>
+                    <th:block th:case="true">
+                       A livrer
+                    </th:block>
+                </th:block>
+            </div>
+            <div>
+                <p th:text="'Prix total: ' + ${commande.prixTotal} + '€'"></p>
+            <div>
             <th:block th:switch="${commande.estPaye}">
                 <th:block th:case="false">
                     Commande non payée
@@ -30,6 +40,8 @@
                     Commande payée
                 </th:block>
             </th:block>
+            </div>
+            <div>
             <th:block th:switch="${commande.idEtat}">
                 <th:block th:case="1">
                     Etat : Panier
@@ -38,7 +50,7 @@
                     Etat : A préparer
                 </th:block>
             </th:block>
-        </div>
+            </div>
 
     </div>
 </div>

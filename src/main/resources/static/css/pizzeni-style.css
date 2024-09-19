@@ -10,6 +10,7 @@
 .page-title {
     font-family: cursive;
     color: #FF6161;
+    justify-content: center;
 }
 
 .description-produit {
