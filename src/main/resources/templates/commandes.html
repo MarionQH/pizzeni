@@ -6,52 +6,51 @@
 <div layout:fragment="content">
 
     <div class="uk-container">
-    <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title">Commandes à préparer</h1>
-
-    <div th:each="commande : ${commandes}" th:if="${commande.idEtat == 2}" class="page-form">
-
-        <th:block>
-            <p th:text="${commande.client.prenom} + ' ' + ${commande.client.nom}"></p>
-            <p th:text="'A livrer pour : '+ ${commande.dateHeureLivraison.getDayOfWeek()}
+        <h1 class="uk-heading-xlarge uk-flex uk-flex-center uk-flex-middle uk-align-center page-title">
+            Commandes à
+            préparer
+        </h1>
+        <div th:each="commande : ${commandes}" th:if="${commande.idEtat == 2}" class="page-form">
+            <th:block>
+                <p th:text="${commande.client.prenom} + ' ' + ${commande.client.nom}">
+                </p>
+                <p th:text="'A livrer pour : '+ ${commande.dateHeureLivraison.getDayOfWeek()}
             + ' ' + ${commande.dateHeureLivraison.getDayOfMonth()}
             + ' ' + ${commande.dateHeureLivraison.getMonth()}
-            + ' ' + ${commande.dateHeureLivraison.getYear()}"
-            ></p>
-            <p th:text="'A ' + ${commande.dateHeureLivraison.toLocalTime()}"
-            ></p>
-            <div>
-                <th:block th:switch="${commande.livraison}">
-                    <th:block th:case="false">
-                        A récupérer sur place
+            + ' ' + ${commande.dateHeureLivraison.getYear()}">
+                </p>
+                <p th:text="'A ' + ${commande.dateHeureLivraison.toLocalTime()}">
+                </p>
+                <div>
+                    <th:block th:switch="${commande.livraison}">
+                        <th:block th:case="false">
+                            A récupérer sur place
+                        </th:block>
+                        <th:block th:case="true">
+                            A livrer
+                        </th:block>
                     </th:block>
-                    <th:block th:case="true">
-                       A livrer
-                    </th:block>
-                </th:block>
-            </div>
-            <div>
+                </div>
                 <p th:text="'Prix total: ' + ${commande.prixTotal} + '€'"></p>
-            <div>
-            <th:block th:switch="${commande.estPaye}">
-                <th:block th:case="false">
-                    Commande non payée
-                </th:block>
-                <th:block th:case="true">
-                    Commande payée
-                </th:block>
+                <div>
+                    <th:block th:switch="${commande.estPaye}">
+                        <th:block th:case="false">
+                            Commande non payée
+                        </th:block>
+                        <th:block th:case="true">
+                            Commande payée
+                        </th:block>
+                    </th:block>
+                </div>
+                <div th:each="detailCommande : *{commande.detailsCommandes}">
+                    <div class="aligner-items">
+                        <p name="detailsCommande" th:text="${detailCommande.quantite}">
+                        </p>
+                        <p name="detailsCommande" th:text="${detailCommande.produit.nom}">
+                        </p>
+                    </div>
+                </div>
             </th:block>
-            </div>
-<!--            <div>-->
-<!--            <th:block th:switch="${commande.idEtat}">-->
-<!--                <th:block th:case="1">-->
-<!--                    Etat : Panier-->
-<!--                </th:block>-->
-<!--                <th:block th:case="2">-->
-<!--                    Etat : A préparer-->
-<!--                </th:block>-->
-<!--            </th:block>-->
-<!--            </div>-->
-
+        </div>
     </div>
-</div>
 </div>
