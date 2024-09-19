@@ -93,14 +93,21 @@
 
         <!--En livraison ou a emporter -->
         <div>
-             <div>
-                 <label label for="livraison"> Livraison</label>
-                 <input th:field="*{livraison}" type="radio"  value="true" checked />
-             </div>
-                <div>
-                     <label for="livraison">A emporter </label>
-                    <input  th:field="*{livraison}" type="radio" value="false"  />
-                </div>
+            <!-- Option "True" -->
+            <input type="radio"
+                   th:id="optionTrue"
+                   th:field="*{livraison}"
+                   th:value="true"
+                   th:checked="${livraison == true}" />
+            <label th:for="optionTrue">Livraison</label>
+
+            <!-- Option "False" -->
+            <input type="radio"
+                   th:id="optionFalse"
+                   th:field="*{livraison}"
+                   th:value="false"
+                   th:checked="${livraison == false}" />
+            <label th:for="optionFalse">À emporter</label>
         </div>
 
         <!--todo à définir dans le controller le passer en Hidden quand il s'ajoutera automatiquement dans le controller-->
