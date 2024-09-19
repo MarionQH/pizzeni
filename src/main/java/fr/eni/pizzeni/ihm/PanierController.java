@@ -3,6 +3,8 @@ package fr.eni.pizzeni.ihm;
 
 import fr.eni.pizzeni.bll.*;
 import fr.eni.pizzeni.bo.*;
+import fr.eni.pizzeni.dao.DAODetailCommandeMySQL;
+import fr.eni.pizzeni.dao.IDAODetailCommande;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class PanierController {
 
     @Autowired
     private DetailCommandeManager detailCommandeManager;
+
+
 
 
     public PanierController(ProduitManager produitManager) {
@@ -78,6 +82,28 @@ public class PanierController {
         - Retirer l'id commande de la session
 
          */
+
+     // - Mettre à jour le prix total
+     // - Mettre à jour le mode de réception (livraison ou à emporter)
+     // - Mettre à jour le client (via son id)
+     // - Mettre à jour le statut -> doit devenir 2 (à préparer)
+        commandeManager.updateCommande(commande);
+
+        List<DetailCommande> listeDetailsCommande = commande.getDetailsCommandes();
+
+        for (int i = 0 ; i < listeDetailsCommande.size() ; i++) {
+
+           DetailCommande detailCommande = listeDetailsCommande.get(i);
+           Long idProduit = detailCommande.getProduit().getId();
+
+
+           detailCommandeManager.updateDetailCommande(detailCommande, idProduit, idCommande);
+        }
+
+
+             
+
+
 
         // - Mettre à jour les details commande qui ont changé (qté)
 
