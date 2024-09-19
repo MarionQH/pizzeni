@@ -78,4 +78,17 @@ public class CommandeManager implements ICommandeManager {
         daoCommande.updateCommande(commande);
 
     }
+
+    @Override
+    public Long calculPrixTotal(Commande commande) {
+
+        List<DetailCommande> detailsCommandes = commande.getDetailsCommandes(); // Suppose qu'il existe une liste des articles
+
+        // Calculer le prix total
+        Long prixTotal = detailsCommandes.stream()
+                .mapToLong(detailcommande -> detailcommande.getProduit().getPrix() * detailcommande.getQuantite())
+                .sum();
+
+        return prixTotal;
+    }
 }

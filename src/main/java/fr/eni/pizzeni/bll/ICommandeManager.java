@@ -16,4 +16,6 @@ public interface ICommandeManager {
     public Long getIdLastCommandeEnregistreeBDD();
 
     public void updateCommande(Commande commande);
+
+    public Long calculPrixTotal(Commande commande);
 }

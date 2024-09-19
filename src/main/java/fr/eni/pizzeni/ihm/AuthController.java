@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+@SessionAttributes({"utilisateur"})
 @Controller
 public class AuthController {
 
@@ -30,7 +28,7 @@ public class AuthController {
 
    @PostMapping("login")
     public String postLogin(@ModelAttribute Utilisateur utilisateur, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-       //tu récupère l'user grace au @ModelAttribute
+       //tu récupère l'utilisateur grace au @ModelAttribute
 
        //1:: Controle de surface
 
@@ -44,7 +42,7 @@ public class AuthController {
        ManagerResponse <Utilisateur> response = authManager.authenticate(utilisateur.getEmail(), utilisateur.getPassword());
        //Erreur code 756 retrourner la page avec l'erreur métier
        if (response.code.equals("756")){
-           return "/connect";
+           return "/connexion.html";
        }
 
        //3: Connecter l'user en session
