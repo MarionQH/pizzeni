@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +19,9 @@ import java.util.List;
 
 @Component
 public class DAOCommandeMySQL implements IDAOCommande {
+
+
+    private static final Logger log = LogManager.getLogger(DAOCommandeMySQL.class);
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -75,7 +81,16 @@ public class DAOCommandeMySQL implements IDAOCommande {
         map.addValue("idCommande", id);
 
 
-        return namedParameterJdbcTemplate.queryForObject(sql, map, COMMANDE_ROW_MAPPER);
+        Commande commande = null;
+        // voir la classe client pour reprendre le même fonctionnement
+        try {
+            commande = namedParameterJdbcTemplate.queryForObject(sql, map, COMMANDE_ROW_MAPPER);
+        } catch (EmptyResultDataAccessException ex){
+            log.error(ex.getMessage());
+        }
+        return commande;
+
+
     }
 
     @Override
