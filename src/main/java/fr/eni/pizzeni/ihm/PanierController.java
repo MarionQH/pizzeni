@@ -107,7 +107,7 @@ public class PanierController {
 
         //nettoyer toute la session
         status.setComplete();
-        
+
         return "redirect:/carte";
     }
 

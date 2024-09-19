@@ -12,13 +12,12 @@
 
     <form th:object="${commande}" method="post" th:action="@{/panier}" class="page-form">
 
-        <!--choix du client -->
+<!--choix du client -->
         <div class="uk-margin">
             <select th:field="*{client}" class="uk-width-1-1">
                 <!--                * étoile fait réference à un objet présent dans la page  ce qui est présent dans le th:objet-->
 
-                <option th:each="client: ${clients}" th:value="${client.id}"
-                        th:text="${client.nom} + ' ' + ${client.prenom}"></option>
+                <option th:each="client: ${clients}" th:value="${client.id}" th:text="${client.nom} + ' ' + ${client.prenom}"></option>
                 <!--                le $ faut référence au donnée du modèle-->
             </select>
         </div>
@@ -26,12 +25,12 @@
 
         <h3>Mes articles:</h3>
 
-        <!--        Partie details commande-->
+<!--        Partie details commande-->
 
         <div th:each="detailCommande, itemStat : *{detailsCommandes}">
             <div class="aligner-items">
 
-                <!--            Quantité -->
+<!--            Quantité -->
 
                 <select th:name="|detailsCommandes[${itemStat.index}].quantite|" required>
                     <!-- Génération des options de 1 à 10 -->
@@ -42,37 +41,31 @@
                     </option>
                 </select>
 
-                <!-- Récupérer les données du produit lorsque l'on passe une commande-->
-                <!--tester quand le controller fonctionne si on récupère bien le produit-->
+        <!-- Récupérer les données du produit lorsque l'on passe une commande-->
+        <!--tester quand le controller fonctionne si on récupère bien le produit-->
 
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.id|"
-                       th:value="${detailCommande.produit.id}">
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.nom|"
-                       th:value="${detailCommande.produit.nom}">
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.description|"
-                       th:value="${detailCommande.produit.description}">
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.prix|"
-                       th:value="${detailCommande.produit.prix}">
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.imageUrl|"
-                       th:value="${detailCommande.produit.imageUrl}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.id|" th:value="${detailCommande.produit.id}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.nom|" th:value="${detailCommande.produit.nom}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.description|" th:value="${detailCommande.produit.description}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.prix|" th:value="${detailCommande.produit.prix}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.imageUrl|" th:value="${detailCommande.produit.imageUrl}">
                 <!--<input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit|" th:value="${detailCommande.produit.typeProduit}">-->
 
-                <!--                Idem pour les infos du type produit-->
+<!--                Idem pour les infos du type produit-->
 
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.id|"
-                       th:value="${detailCommande.produit.typeProduit.id}">
-                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.libelle|"
-                       th:value="${detailCommande.produit.typeProduit.libelle}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.id|" th:value="${detailCommande.produit.typeProduit.id}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit.libelle|" th:value="${detailCommande.produit.typeProduit.libelle}">
 
 
-                <!--nom de du produit -->
+        <!--nom de du produit -->
 
-                <p name="detailsCommande" th:text="${detailCommande.produit.getNom()}"></p>
+            <p name="detailsCommande" th:text="${detailCommande.produit.getNom()}"></p>
 
 
-                <!--prix par produit -->
 
-                <p name="detailsCommande" th:text="${detailCommande.produit.getPrix()} + ' €'"></p>
+        <!--prix par produit -->
+
+            <p name="detailsCommande" th:text="${detailCommande.produit.getPrix()} + ' €'"></p>
             </div>
         </div>
 
@@ -80,7 +73,7 @@
 
         <!--Todo faire le calcul-->
         <div class=" uk-margin prix">
-            <p th:text="*{prixTotal} + ' €'"></p>
+            <p th:text="*{prixTotal} + ' €'"> </p>
             <!--prix de la commande -->
             <input th:field="*{prixTotal}" type="hidden">
         </div>
@@ -88,43 +81,31 @@
 
         <h3>Ma commande:</h3>
 
-        <!--id de la commande -->
-        <input th:field="*{id}" type="hidden">
+         <!--id de la commande -->
+            <input th:field="*{id}" type="hidden">
 
-        <!--choix date et heure de livraison -->
+         <!--choix date et heure de livraison -->
         <div class=" uk-margin">
             <label for="dateHeureLivraison">date et heure de livraison:</label>
-            <input th:field="*{dateHeureLivraison}" class="uk-input" type="datetime-local"/>
+            <input th:field="*{dateHeureLivraison}" class="uk-input" type="datetime-local" />
         </div>
 
 
         <!--En livraison ou a emporter -->
-        <!--        <div>-->
-        <!--             <div>-->
-        <!--                 <label label for="livraison"> Livraison</label>-->
-        <!--                 <input th:field="*{livraison}"  th:name="livraison" id="true" type="radio"  value="true" checked />-->
-        <!--             </div>-->
-        <!--                <div>-->
-        <!--                     <label for="livraison">A emporter </label>-->
-        <!--                    <input  th:field="*{livraison}" th:name="livraison" id="false" type="radio" value="false"  />-->
-        <!--                </div>-->
-        <!--        </div>-->
-
         <div>
-            <input type="radio" th:id="|optionTrue|" th:field="*{livraison}" th:value="true"
-                    th:checked="${livraison == true}"/>
-            <label th:for="|optionTrue|">Livraison</label>
+             <div>
+                 <label label for="livraison"> Livraison</label>
+                 <input th:field="*{livraison}" type="radio"  value="true" checked />
+             </div>
+                <div>
+                     <label for="livraison">A emporter </label>
+                    <input  th:field="*{livraison}" type="radio" value="false"  />
+                </div>
         </div>
-        <div>
-            <input type="radio" th:id="|optionFalse|" th:field="*{livraison}" th:value="false"
-                    th:checked="${livraison == false}"/>
-            <label th:for="|optionFalse|">À emporter</label>
-        </div>
-
 
         <!--todo à définir dans le controller le passer en Hidden quand il s'ajoutera automatiquement dans le controller-->
         <div class=" uk-margin">
-            <!--            <label for="idEtat"> Statut</label>-->
+<!--            <label for="idEtat"> Statut</label>-->
             <input th:field="*{idEtat}" class="uk-input" label="statut" type="hidden"/>
         </div>
 
