@@ -95,11 +95,11 @@
         <div>
              <div>
                  <label label for="livraison"> Livraison</label>
-                 <input th:field="*{livraison}" type="radio"  value="true" checked />
+                 <input th:field="*{livraison}" type="radio"  th:value="true" checked />
              </div>
                 <div>
                      <label for="livraison">A emporter </label>
-                    <input  th:field="*{livraison}" type="radio" value="false"  />
+                    <input  th:field="*{livraison}" type="radio" th:value="false"  />
                 </div>
         </div>
 
