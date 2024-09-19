@@ -41,6 +41,17 @@
                     </option>
                 </select>
 
+        <!-- Récupérer les données du produit lorsque l'on passe une commande-->
+        <!--tester quand le controller fonctionne si on récupère bien le produit-->
+
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.id|" th:value="${detailCommande.produit.id}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.nom|" th:value="${detailCommande.produit.nom}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.description|" th:value="${detailCommande.produit.description}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.prix|" th:value="${detailCommande.produit.prix}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.imageUrl|" th:value="${detailCommande.produit.imageUrl}">
+                <input type="hidden" th:name="|detailsCommandes[${itemStat.index}].produit.typeProduit|" th:value="${detailCommande.produit.typeProduit}">
+
+
         <!--nom de du produit -->
 
             <p name="detailsCommande" th:text="${detailCommande.produit.getNom()}"></p>
