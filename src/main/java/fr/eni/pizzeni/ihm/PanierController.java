@@ -84,9 +84,8 @@ public class PanierController {
          */
 
      // - Mettre à jour le prix total
-     // - Mettre à jour le mode de réception (livraison ou à emporter)
-     // - Mettre à jour le client (via son id)
      // - Mettre à jour le statut -> doit devenir 2 (à préparer)
+     // - Retirer l'id commande de la session
 
 //        Commande commande = commandeManager.getCommandeById(idCommande);
 
@@ -111,56 +110,17 @@ public class PanierController {
 
 
 
-        // - Mettre à jour les details commande qui ont changé (qté)
 
-//        @Override
-//        public void updateDetailCommande(DetailCommande detailCommande,Long idProduit,Long idCommande) {
-//
-//            daodetailCommande.updateDetailCommande(detailCommande,idProduit,idCommande);
-//
-//        }
-
-//        model.getAttribute("commande");
-//
-//        List<DetailCommande> detailsCommande = commande.getDetailsCommandes();
-//
-//
-//        detailCommandeManager.updateDetailCommande();
-
-
-
-
-
-
-
-//        //Update chaque ligne de detail commande
-//        for (DetailCommande detailCommande : detailsCommande) {
-//
-//            detailCommandeManager.updateDetailCommande(detailCommande,detailCommande.getProduit().getId(), commande.getId());
-//        }
 //
 //        //gerer le changement d'état de la commande:
 //        commande.setIdEtat(2L);
 //
-//        //update la commande avec la nouvelle heure de livraison
-//        commandeManager.updateCommande(commande);
+//
 
         return "redirect:/panier";
     }
 
-
-        @GetMapping("/remove-id-commande-session")
-        public String removeIdCommandeFromSession(HttpSession session) {
-            // Remove the 'idCommande' attribute from the session
-            session.removeAttribute("idCommande");
-
-            // Optionally, redirect to another page or return a view
-            return "redirect:/carte";  // Redirects to the homepage, or change as needed
-        }
-
-
-
-
+    
 
     @PostMapping("ajout-panier")
     public String getAjoutPanier(Model model, DetailCommande detailCommande, @SessionAttribute(name = "idCommande", required = false) Long idCommande) {
