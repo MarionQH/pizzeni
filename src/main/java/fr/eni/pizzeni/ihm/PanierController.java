@@ -109,7 +109,7 @@ public class PanierController {
 
 
     @PostMapping("ajout-panier")
-    public String getAjoutPanier(Model model, DetailCommande detailCommande, @SessionAttribute(name = "idCommande", required = false) Long idCommande) {
+    public String getAjoutPanier(Model model, DetailCommande detailCommande, @SessionAttribute(name = "idCommande", required = false) Long idCommande,RedirectAttributes redirectAttributes) {
 
 
 
@@ -136,7 +136,7 @@ public class PanierController {
                         detailCommandeManager.saveDetailCommande(detailCommande, idCommande);
         }
 
-
+        IHMHelpers.sendCommonFlashMessage(redirectAttributes, FlashMessage.TYPE_FLASH_SUCESS, "Produit ajouté au panier");
 
         return "redirect:/carte";
 

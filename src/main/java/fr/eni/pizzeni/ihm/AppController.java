@@ -86,9 +86,11 @@ public class AppController {
 
 
     @PostMapping("gestion-produit")
-    public String postAjoutPizza(Produit produit) {
+    public String postAjoutPizza(Produit produit,RedirectAttributes redirectAttributes) {
 
         produitManager.saveProduit(produit);
+
+        IHMHelpers.sendCommonFlashMessage(redirectAttributes, FlashMessage.TYPE_FLASH_SUCESS, "Produit ajouté à la carte avec succès");
 
         return "redirect:/carte";
     }
@@ -159,9 +161,11 @@ public class AppController {
     }
 
     @PostMapping("ajout-utilisateur")
-    public String postInstancierUnClient(Client client) {
+    public String postInstancierUnClient(Client client,RedirectAttributes redirectAttributes) {
 
         clientManager.saveClient(client);
+
+        IHMHelpers.sendCommonFlashMessage(redirectAttributes, FlashMessage.TYPE_FLASH_SUCESS, "Utilisateur ajouté avec succès");
         return "redirect:/ajout-utilisateur";
     }
 
