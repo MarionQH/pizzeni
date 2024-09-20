@@ -170,8 +170,14 @@ public class AppController {
     }
 
 
+    @GetMapping("le-chef-a-prepare-la-commande")
+            public String passerLaCommandeEnPrete(RedirectAttributes redirectAttributes) {
+        IHMHelpers.sendCommonFlashMessage(redirectAttributes, FlashMessage.TYPE_FLASH_SUCESS, "La commande est bien marquée comme prête");
 
 
+
+    return "redirect:/liste-commandes";
+    }
 }
 
 
