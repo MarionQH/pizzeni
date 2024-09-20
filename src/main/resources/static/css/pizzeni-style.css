@@ -77,3 +77,15 @@ hr {
     border-radius: 3em;
 
 }
+
+h2 {
+    text-align: center;
+}
+
+.green-font {
+    color: #32d296;
+}
+
+.red-font{
+    color: #FF6161;
+}

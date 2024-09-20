@@ -12,8 +12,21 @@
         </h1>
         <div th:each="commande : ${commandes}" th:if="${commande.idEtat == 2}" class="page-form">
             <th:block>
-                <p th:text="${commande.client.prenom} + ' ' + ${commande.client.nom}">
-                </p>
+                <h2 th:text="${commande.client.prenom} + ' ' + ${commande.client.nom}">
+                </h2>
+                <div>
+                    <th:block th:switch="${commande.estPaye}">
+                        <th:block th:case="false">
+                            <span class="red-font">
+                            Commande non payée
+                                </span>
+                        </th:block>
+                        <th:block th:case="true" >
+                           <span class="green-font"> Commande payée
+                           </span>
+                        </th:block>
+                    </th:block>
+                </div>
                 <p th:text="'A livrer pour : '+ ${commande.dateHeureLivraison.getDayOfWeek()}
             + ' ' + ${commande.dateHeureLivraison.getDayOfMonth()}
             + ' ' + ${commande.dateHeureLivraison.getMonth()}
@@ -32,21 +45,12 @@
                     </th:block>
                 </div>
                 <p th:text="'Prix total: ' + ${commande.prixTotal} + '€'"></p>
-                <div>
-                    <th:block th:switch="${commande.estPaye}">
-                        <th:block th:case="false">
-                            Commande non payée
-                        </th:block>
-                        <th:block th:case="true">
-                            Commande payée
-                        </th:block>
-                    </th:block>
-                </div>
+
 
 
                 <div th:each="detailsCommande : ${commande.detailsCommandes}">
                     <div class="aligner-items">
-                        <p th:text="${detailsCommande.quantite} + ' ' + ${detailsCommande.produit.nom}">
+                        <p th:text="'- ' + ${detailsCommande.quantite} + ' ' + ${detailsCommande.produit.nom}">
                     </div>
                 </div>
 
