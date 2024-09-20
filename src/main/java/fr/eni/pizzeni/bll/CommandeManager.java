@@ -51,14 +51,9 @@ public class CommandeManager implements ICommandeManager {
         // Récupérer la commande dans la BDD depuis son id
         Commande commande = daoCommande.selectCommandeById(id);
 
-        //Récupérer les details commande de la BDD depuis l'id detail commande
-        //commande.setDetailsCommandes(detailCommande.selectDetailsCommandeByIdCommande(id));
-
-
-//        return commande;
 
         if(commande != null) {
-            //Récupérer les details commande de la BDD depuis l'id detail commande
+
             commande.setDetailsCommandes(detailCommande.selectDetailsCommandeByIdCommande(id));
             return commande;
         }

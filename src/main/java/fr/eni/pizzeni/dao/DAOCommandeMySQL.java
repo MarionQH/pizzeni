@@ -53,8 +53,7 @@ public class DAOCommandeMySQL implements IDAOCommande {
             client.setCodePostal(rs.getLong("code_postal"));
             commande.setClient(client);
 
-            // Pour récupérer une liste de type Objet, on passe par le manager
-            // c'est le manager qui va faire appel à plusieurs DAO et rattacher les objets ensemble
+
 
             return commande;
         }
