@@ -40,7 +40,7 @@ public class AppController {
 
     @GetMapping("")
     public String getBase() {
-        return "base.html";
+        return "accueil.html";
     }
 
 

@@ -8,7 +8,7 @@
 }
 
 .page-title {
-    font-family: cursive;
+    font-family: fantasy;
     color: #FF6161;
     justify-content: center;
     text-align: center;
@@ -67,8 +67,20 @@ hr {
     margin: auto;
 }
 
-.navbar-base{
+.uk-navbar-container.navbar{
+background: none;
+}
 
+.logo-nav{
+    height: 40px;
+}
+
+.uk-offcanvas-bar.eni-offcanvas-bar{
+    background-color: #8F1E1E ;
+}
+
+.li-nav-text{
+    font-size: large;
 }
 
 .flash-message{

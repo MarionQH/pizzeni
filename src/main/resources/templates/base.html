@@ -2,13 +2,13 @@
 <html class="page-background"
       lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
+    <link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css"/>
 
     <!-- UIkit JS -->
     <script src="/vendor/uikit/js/uikit.min.js"></script>
@@ -25,43 +25,70 @@
     <title layout:fragment="title"> Accueil </title>
 </head>
 
-<body >
+<body>
 
-<nav class= "uk-navbar navbar-base">
-    <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <li  class="uk-parent"><a th:href="@{/carte}">Notre Carte</a></li>
-            <li  class="uk-parent"><a th:href="@{/gestion-produit}" >Ajouter un produit</a></li>
-            <li  class="uk-parent"><a th:href="@{/ajout-utilisateur}" >Ajouter un Utilisateur</a></li>
-            <li  class="uk-parent"><a th:href="@{/liste-commandes}">Commandes</a></li>
-        </ul>
+<!--<nav class="uk-navbar navbar-base">-->
+<!--    <div class="uk-navbar-left">-->
+<!--        <ul class="uk-navbar-nav">-->
+<!--            <li class="uk-parent"><a th:href="@{/carte}">Notre Carte</a></li>-->
+<!--            <li class="uk-parent"><a th:href="@{/gestion-produit}">Ajouter un produit</a></li>-->
+<!--            <li class="uk-parent"><a th:href="@{/ajout-utilisateur}">Ajouter un Utilisateur</a></li>-->
+<!--            <li class="uk-parent"><a th:href="@{/liste-commandes}">Commandes</a></li>-->
+<!--        </ul>-->
 
-        <a th:href="@{/panier}" class="uk-icon-button" title="panier">
-            <i class="fas fa-shopping-basket"></i>
-        </a>
+<!--        <a th:href="@{/panier}" class="uk-icon-button" title="panier">-->
+<!--            <i class="fas fa-shopping-basket"></i>-->
+<!--        </a>-->
 
-        <a sec:authorize="!isAuthenticated" title="Se connecter"  class="uk-icon-button" th:href="@{/login}">
-            <i class="fas fa-sign-in-alt"></i></a>
-        <a sec:authorize="isAuthenticated" title="Se déconnecter"  class="uk-icon-button" th:href="@{/logout}">
-            <i class="fas fa-door-open"></i></a>
+<!--        <a sec:authorize="!isAuthenticated" title="Se connecter" class="uk-icon-button" th:href="@{/login}">-->
+<!--            <i class="fas fa-sign-in-alt"></i></a>-->
+<!--        <a sec:authorize="isAuthenticated" title="Se déconnecter" class="uk-icon-button" th:href="@{/logout}">-->
+<!--            <i class="fas fa-door-open"></i></a>-->
 
+<!--    </div>-->
+<!--</nav>-->
+
+<div class="wrapper">
+    <nav class="uk-navbar-container navbar" uk-navbar>
+
+        <div class="uk-navbar-left eni-navbar-btn-padding"><a class="uk-navbar-toggle" href="#" uk-toggle="target: #offcanvas-nav">
+            <span uk-navbar-toggle-icon></span> </a>
+        </div>
+        <div class="uk-navbar-center"><a class="uk-navbar-item uk-logo" href="#">
+            <img src="/img/logo1.PNG" class="logo-nav" alt="Logo"> </a>
+        </div>
+    </nav><!--<div sec:authorize="isAuthenticated">--><!--  Logged user: <span sec:authentication="name"></span>-->
+    <!--  Roles: <span sec:authentication="principal.authorities"></span>--><!--</div>-->
+
+    <div id="offcanvas-nav" uk-offcanvas="mode: reveal; overlay: true">
+        <div class="uk-offcanvas-bar eni-offcanvas-bar">
+            <ul class="uk-nav uk-nav-default">
+                <li class="uk-parent li-nav-text"><a th:href="@{/carte}">Notre Carte</a></li>
+                <li class="uk-parent li-nav-text"><a th:href="@{/gestion-produit}">Ajouter un produit</a></li>
+                <li class="uk-parent li-nav-text"><a th:href="@{/ajout-utilisateur}">Ajouter un Utilisateur</a></li>
+                <li class="uk-parent li-nav-text"><a th:href="@{/liste-commandes}">Commandes</a></li>
+                </ul>
+
+            <a th:href="@{/panier}" class="uk-icon-button" title="panier">
+               <i class="fas fa-shopping-basket"></i>
+                       </a>
+        </div>
     </div>
-</nav>
 
-<!-- Flash message conditionnel -->
-<!-- Affiche un message temporaire si il existe -->
-<div th:if="${flashMessage}" class="uk-padding-small">
-    <div th:classappend ="${flashMessage.getTypeCssClass()}" uk-alert class="flash-message">
-        <a href class="uk-alert-close" uk-close></a>
-        <p th:text="${flashMessage.message}"></p>
+    <!-- Flash message conditionnel -->
+    <!-- Affiche un message temporaire si il existe -->
+    <div th:if="${flashMessage}" class="uk-padding-small">
+        <div th:classappend="${flashMessage.getTypeCssClass()}" uk-alert class="flash-message">
+            <a href class="uk-alert-close" uk-close></a>
+            <p th:text="${flashMessage.message}"></p>
+        </div>
     </div>
-</div>
 
-<br>
+    <br>
 
-<!--nos pages s'affichent ici-->
-<div layout:fragment="content">
-</div>
+    <!--nos pages s'affichent ici-->
+    <div layout:fragment="content">
+    </div>
 
 
 </body>
