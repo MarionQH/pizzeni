@@ -32,6 +32,15 @@ public class CommandeManager implements ICommandeManager {
 
         List<Commande> commandes = daoCommande.selectCommandes();
 
+        for (Commande commande : commandes) {
+
+           Long idCommande = commande.getId();
+           List<DetailCommande> detailsCommandes = detailCommande.selectDetailsCommandeByIdCommande(idCommande);
+           commande.setDetailsCommandes(detailsCommandes);
+
+        }
+
+
         return commandes;
     }
 
