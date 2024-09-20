@@ -3,8 +3,7 @@ package fr.eni.pizzeni.ihm;
 
 import fr.eni.pizzeni.bll.*;
 import fr.eni.pizzeni.bo.*;
-import fr.eni.pizzeni.dao.DAODetailCommandeMySQL;
-import fr.eni.pizzeni.dao.IDAODetailCommande;
+
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SessionAttributes({"idCommande"})
@@ -62,22 +60,16 @@ public class PanierController {
     }
 
     @PostMapping("panier")
-    public String postCreationCommande(Commande commande,SessionStatus status,HttpSession session)  {
+    public String postCreationCommande(Commande commande,SessionStatus status,HttpSession session,RedirectAttributes redirectAttributes)  {
 
 
-//
+        if (commande.getDateHeureLivraison() == null || commande.getDetailsCommandes() == null) {
+            IHMHelpers.sendCommonFlashMessage(redirectAttributes,FlashMessage.TYPE_FLASH_ERROR, "ERREUR ! Veuillez compléter votre commande.");
+            return "redirect:/panier";
+        }
 //        TRIGGER (action qui déclenche le PostMapping 'panier')
-//        - Appui sur bouton commander
 //        - Appui sur changement de quantité aussi ? (pour MAJ les prix en temps réél) // Plus tard
 //
-//        FONCTIONNALITES A APPELER
-//        - Mettre à jour les details commande qui ont changé (qté)
-//        - Mettre à jour le client
-//        - Recalculer le prix total
-//        - Mettre à jour le prix total
-//        - Mettre à jour le mode de réception (livraison ou à emporter)
-
-
 
         //Mettre à jour le prix total
         commande.setPrixTotal(commandeManager.calculPrixTotal(commande));
@@ -85,6 +77,7 @@ public class PanierController {
 
         //gerer le changement d'état de la commande:
         commande.setIdEtat(2L);
+
         commandeManager.updateCommande(commande);
 
         List<DetailCommande> listeDetailsCommande = commande.getDetailsCommandes();
@@ -107,6 +100,8 @@ public class PanierController {
 
         //nettoyer toute la session
         status.setComplete();
+
+        IHMHelpers.sendCommonFlashMessage(redirectAttributes, FlashMessage.TYPE_FLASH_SUCESS, "Commande enregistrée avec succès");
 
         return "redirect:/carte";
     }

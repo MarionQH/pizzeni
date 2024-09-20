@@ -70,3 +70,10 @@ hr {
 .navbar-base{
 
 }
+
+.flash-message{
+    border-style: solid;
+    border-color: #FF6161;
+    border-radius: 3em;
+
+}
