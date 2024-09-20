@@ -46,11 +46,7 @@
 
                 <div th:each="detailsCommande : ${commande.detailsCommandes}">
                     <div class="aligner-items">
-                        <p th:text="${detailsCommande.quantite}">
-                        </p>
-                        </p>
-                        <p th:text="${detailsCommande.produit.nom}">
-                        </p>
+                        <p th:text="${detailsCommande.quantite} + ' ' + ${detailsCommande.produit.nom}">
                     </div>
                 </div>
 
